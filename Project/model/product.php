@@ -7,7 +7,7 @@ class Product {
     private $id;
     private $name;
     private $price;
-    private $description;
+    private $category;
     private $available;
 
     private $dbConnection;
@@ -18,7 +18,7 @@ class Product {
     }
 
     function getAll(){
-        $query = "select * from products";
+        $query = "select * from product";
 
         $statement = $this->dbConnection->prepare($query);
         $statement->execute();
