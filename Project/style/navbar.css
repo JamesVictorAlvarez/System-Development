@@ -1,0 +1,31 @@
+nav {
+    background-color: black;
+    position: relative;
+    top: 50px;
+    width: 100%;
+    z-index: -1;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0 0 0 60px;
+    overflow: hidden;
+}
+
+li {
+    float: left;
+    padding: 16px 26px 16px 26px;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    transition: color 0.35s ease-out;
+}
+
+li a:hover {
+    color: grey;
+}
