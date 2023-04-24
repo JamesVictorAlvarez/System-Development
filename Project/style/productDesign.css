@@ -1,0 +1,89 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Quicksand";
+}
+
+body {
+    min-width: 50vh;
+}
+
+html,
+body {
+    height: 100%;
+    color: #fff;
+    overflow-x: hidden;
+    background-color: #161718;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #1b1b1f;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    color: #fff;
+}
+
+thead {
+    background-color: #121113;
+    color: #fff;
+}
+
+th,
+td {
+    padding: 20px;
+    text-align: left;
+    font-size: 16px;
+}
+
+th {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+input {
+    background-color: #121113;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: 0.5s;
+}
+
+input:hover {
+    background-color: #1E2221;
+    transform: translateY(-4px);
+}
+
+.directory {
+    display: flex;
+    justify-content: center;
+}
+
+.directory button {
+    background-color: #9DA9BE;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    margin: 20px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: 0.5s;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.directory button:hover {
+    background-color: #A0B9C6;
+    transform: translateY(-4px);
+}
