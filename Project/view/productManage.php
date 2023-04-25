@@ -14,11 +14,11 @@
     $product = new product();
 
     //Update the database
-    if (isset($_GET['edit']))
-        $product->updateRow($_GET["name"], $_GET["price"], $_GET["available"], $_GET["count"]);
+    if (isset($_POST['edit']))
+        $product->updateRow($_POST["name"], $_POST["price"], $_POST["available"], $_POST["count"]);
 
-    if (isset($_GET['add']))
-        $product->addRow($_GET["name"], $_GET["price"], $_GET["available"]);
+    if (isset($_POST['add']))
+        $product->addRow($_POST["name"], $_POST["price"], $_POST["available"]);
 
     $products = $product->getAll();
 
@@ -33,14 +33,14 @@
 
     $counter = 0;
     foreach ($products as $e) {
-        $counter++;
+        $counter = $e['id'];
         $html .= "<tr>
                     <td>" . $e['id'] . "</td>
                     <td>" . $e['name'] . "</td>
                     <td>" . $e['price'] . "</td>
                     <td>" . $e['available'] . "</td>
                     <td>
-                        <form method='get'>
+                        <form method='post' action='?resource=product&action=edit'>
                             <input type='hidden' name = 'resource' value ='product'>
                             <input type='hidden' name = 'action' value ='edit'>
                             <input type='hidden' name = 'row' value =$counter>
