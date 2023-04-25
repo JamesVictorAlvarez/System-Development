@@ -100,7 +100,7 @@
 
 <body>
 
-    <form method="get">
+    <form method="post" action="?resource=product&action=manage">
         <input type="hidden" name="resource" value="product">
         <input type="hidden" name="action" value="manage">
 
