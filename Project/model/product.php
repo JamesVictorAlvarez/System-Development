@@ -1,5 +1,5 @@
 <?php
-
+namespace model;
 require(dirname(__DIR__) . "/core/dbconnectionmanager.php");
 
 class Product {
@@ -7,7 +7,7 @@ class Product {
     private $id;
     private $name;
     private $price;
-    private $description;
+    private $category;
     private $available;
 
     private $dbConnection;
@@ -17,7 +17,18 @@ class Product {
         $this->dbConnection = $conManager->getConnection();
     }
 
-    function getAll(){
+    function getRow($count) {
+
+        $query = "select * from products where id = $count";
+
+        $statement = $this->dbConnection->prepare($query);
+
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
+    function getAll() {
         $query = "select * from products";
 
         $statement = $this->dbConnection->prepare($query);
@@ -26,6 +37,22 @@ class Product {
         $result = $statement->fetchAll();
 
         return $result;
+    }
+
+    function updateRow($name, $price, $available,  $count) {
+        $query = "update products set name='$name', price=$price, available=$available where id = $count";
+
+        $statement = $this->dbConnection->prepare($query);
+
+        $statement->execute();
+    }
+
+    function addRow($name, $price, $available) {
+        $query = "insert into products (name, price, available) values ('$name', '$price', '$available')";
+
+        $statement = $this->dbConnection->prepare($query);
+
+        $statement->execute();
     }
 }
 ?>
