@@ -104,10 +104,10 @@
     $product = new product();
 
     // Creating the Form
-    $html = '<form method="get">';
+    $html = '<form method="post" action="?resource=product&action=manage">';
 
-    if (isset($_GET['row'])) {
-        $count = $_GET['row'];
+    if (isset($_POST['row'])) {
+        $count = $_POST['row'];
         $products = $product->getRow($count);
     }
 
