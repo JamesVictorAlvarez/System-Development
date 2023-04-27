@@ -54,7 +54,7 @@ class Service {
     
         $statement->execute();
 
-        header("Location: http://localhost/System-Development/Project/index.php?resource=service&action=view");
+        header("Location: http://localhost/System-Development/Project/index.php?resource=service&action=manage");
         exit;
     }
 
@@ -68,7 +68,7 @@ class Service {
         $result = $statement->execute();
     
        
-            header("Location: http://localhost/System-Development/Project/index.php?resource=service&action=view");
+            header("Location: http://localhost/System-Development/Project/index.php?resource=service&action=manage");
             exit;
         
     }

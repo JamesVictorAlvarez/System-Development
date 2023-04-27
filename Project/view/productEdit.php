@@ -104,7 +104,7 @@
     $product = new product();
 
     // Creating the Form
-    $html = '<form method="post" action="?resource=product&action=manage">';
+    $html = '<form method="post">';
 
     if (isset($_POST['row'])) {
         $count = $_POST['row'];
@@ -119,9 +119,6 @@
     }
 
     $html .= '<h2>UPDATE</h2>
-        <input type="hidden" name="resource" value="product">
-        <input type="hidden" name="action" value="manage">
-
         <label for="name">Name:</label>
         <input type="text" name="name" value= ' . $name . ' required>
 
@@ -132,10 +129,14 @@
         <input type="text" name="available" value=' . $available . ' required>
 
         <input type="hidden" name="count" value=' . $count . '>
-        <input type="submit" value="Update" name="edit">';
+        <input type="submit" value="Update" name="update">';
 
     $html .= "</form>";
     echo $html;
+        if (isset($_POST['update'])) {
+            $product->updateRow($_POST["name"], $_POST["price"], $_POST["available"], $_POST["count"]);
+            header("location:?resource=product&action=manage");
+        } 
     ?>
 </body>
 

@@ -13,13 +13,6 @@
 
     $product = new product();
 
-    //Update the database
-    if (isset($_POST['edit']))
-        $product->updateRow($_POST["name"], $_POST["price"], $_POST["available"], $_POST["count"]);
-
-    if (isset($_POST['add']))
-        $product->addRow($_POST["name"], $_POST["price"], $_POST["available"]);
-
     $products = $product->getAll();
 
     //Creating the table
@@ -41,22 +34,31 @@
                     <td>" . $e['available'] . "</td>
                     <td>
                         <form method='post' action='?resource=product&action=edit'>
-                            <input type='hidden' name = 'resource' value ='product'>
-                            <input type='hidden' name = 'action' value ='edit'>
                             <input type='hidden' name = 'row' value =$counter>
                             <input type='submit' value ='Edit'>
+                        </form>
+                        <form method='post'>
+                            <input type='hidden' name = 'row' value =$counter>
+                            <input type='submit' value ='Delete' name='delete'>
                         </form>
                     </td>
                     </tr>";
     }
     $html .= "</table>";
-    $html .= "<div style='display: flex; justify-content: center; padding: 20px;'><form method='get'>
-            <input type='hidden' name = 'resource' value ='product'>
-            <input type='hidden' name = 'action' value ='add'>
+    $html .= "<div style='display: flex; justify-content: center; padding: 20px;'>
+        <form method='post'>
             <input type='hidden' name = 'row' value =$counter>
-            <input type='submit' value ='Add'>
+            <input type='submit' value ='Add' name='add'>
         </form></div>";
+        if (isset($_POST['add'])) 
+            header("location:?resource=product&action=add");    
+    if (isset($_POST['delete'])) 
+        $product->deleteRow($_POST["row"]);
+        header("location:?resource=product&action=manage");
+    if (isset($_POST['add'])) 
+        header("location:?resource=product&action=add");
     echo $html;
+        
     ?>
 
     
