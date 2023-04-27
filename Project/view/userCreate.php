@@ -1,3 +1,4 @@
+namespace view;
 <!DOCTYPE html>
 <html lang="en">
 
@@ -101,19 +102,19 @@
 <body>
 <h1>User Login</h1>
 <form action="" method="post">
-    <input type="hidden" name="resource" value="user">
-    <input type="hidden" name="action" value="manage">
     <label for="username">username:</label><br>
     <input type="text" id="username" name="username"><br>
     <label for="password">Password:</label><br>
     <input type="password" id="password" name="password"><br><br>
-    <input type="submit" value="Login">
+    <input type="submit" value="Register">
 </form>
 </body>
 </html>
 
 <?php
-class UserLogin{
+
+class UserCreate
+{
     private $user;
 
     public function __construct($user)
@@ -128,4 +129,5 @@ class UserLogin{
         }
     }
 }
+
 ?>

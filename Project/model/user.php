@@ -1,5 +1,10 @@
 <?php
 namespace model;
+use PDO;
+
+require_once(dirname(__DIR__).'/core/dbConnectionManager.php');
+require_once(dirname(__DIR__).'/core/AuthenticationManager.php');
+
 class User
 {
 
@@ -17,12 +22,12 @@ class User
 
         $this->dbConnection = $conManager->getConnection();
 
-        $this->authManager = new \Database\AuthenticationManager($this);
+        $this->authManager = new \database\AuthenticationManager($this);
     }
 
     function create()
     {
-        $query = "INSERT INTO users (username, password) VALUES(:username, :password)";
+        $query = "INSERT INTO user (username, password) VALUES(:username, :password)";
 
         $statement = $this->dbConnection->prepare($query);
 
@@ -56,7 +61,7 @@ class User
 
     function getPasswordByUsername(){
 
-        $query = "SELECT password FROM users WHERE username = :username";
+        $query = "SELECT password FROM user WHERE username = :username";
 
         $statement = $this->dbConnection->prepare($query);
 
@@ -68,13 +73,13 @@ class User
 
     function getUserByUsername($username){
 
-        $query = "SELECT * FROM users WHERE username = :username";
+        $query = "SELECT * FROM user WHERE username = :username";
 
         $statement = $this->dbConnection->prepare($query);
 
         $statement->execute(['username'=> $username]);
 
-        return $statement->fetchAll(\PDO::FETCH_CLASS, User::class);
+        return $statement->fetchAll(PDO::FETCH_CLASS, User::class);
     }
 
     public function setUsername($username){
@@ -109,7 +114,7 @@ class User
 
     public function getFromId(int $id)
     {
-        $query = "select * from users where id = :id";
+        $query = "select * from user where id = :id";
 
         $statement = $this->dbConnection->prepare($query);
 
