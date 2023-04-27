@@ -57,7 +57,6 @@
         .item1 {
             grid-column: 2 / span 20;
             grid-row: 1 / span 40;
-            color: black;
         }
 
         .item2 {
@@ -68,7 +67,6 @@
         .item3 {
             grid-column: 1;
             grid-row: 3;
-            color: black;
         }
 
         input[type="search"] {
@@ -91,18 +89,6 @@
             color: #fff;
 
         }
-
-        .shop-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-        }
-
-        .shop-container div {
-            background-color: grey;
-            margin: 40px;
-            padding-top: 200px;
-            border-radius: 2px;
-        }
     </style>
     <title>Home</title>
 </head>
@@ -121,7 +107,7 @@
     <nav>
         <ul>
             <li><a href="?resource=home&action=view">Home</a></li>
-            <li><a href="?resource=product&action=view">Shop</a></li>
+            <li><a href="?resource=product&action=manage">Shop</a></li>
             <li><a href="#">Appointment</a></li>
             <li><a href="#">Location</a></li>
             <li><a href="#">About</a></li>
@@ -130,42 +116,17 @@
     <!------------------------------------------------------||NAVBAR||------------------------------------------------------------>
 
     <div class="container">
-
-        <!------------------------------------------------------||SEARCH||------------------------------------------------------------>
         <div class="item1">
-            Shop
-            <div class="shop-container">
-                <?php
-
-                $product = new product();
-
-                $products = $product->getAll();
-
-                foreach ($products as $e) {
-                    $html = "<div>
-                    " . $e['name'] . "
-                    </div>";
-
-
-                    echo $html;
-                }
-
-                ?>
-            </div>
+            Main
         </div>
-        <!------------------------------------------------------||SEARCH||------------------------------------------------------------>
-
-        <!------------------------------------------------------||SEARCH||------------------------------------------------------------>
         <div class="item2">
             <form>
                 <input type="search" id="search-input" name="search">
                 <button type="submit">Search</button>
             </form>
         </div>
-        <!------------------------------------------------------||SEARCH||------------------------------------------------------------>
-
         <div class="item3">
-            Category
+            menu
         </div>
     </div>
 

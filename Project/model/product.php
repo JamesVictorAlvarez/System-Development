@@ -1,5 +1,5 @@
 <?php
-namespace model;
+
 require(dirname(__DIR__) . "/core/dbconnectionmanager.php");
 
 class Product {
@@ -49,6 +49,14 @@ class Product {
 
     function addRow($name, $price, $available) {
         $query = "insert into products (name, price, available) values ('$name', '$price', '$available')";
+
+        $statement = $this->dbConnection->prepare($query);
+
+        $statement->execute();
+    }
+
+    function deleteRow($count) {
+        $query = "delete from products where id = $count";
 
         $statement = $this->dbConnection->prepare($query);
 

@@ -100,7 +100,7 @@
 
 <body>
 
-    <form method="post" action="?resource=product&action=manage">
+    <form method="post">
         <input type="hidden" name="resource" value="product">
         <input type="hidden" name="action" value="manage">
 
@@ -114,6 +114,14 @@
         <input type="text" name="available" value='' required>
 
         <input type="submit" value="Add" name="add">
+
+        <?php
+            $product = new product();
+            if (isset($_POST['add'])) {
+                $product->addRow($_POST["name"], $_POST["price"], $_POST["available"]);
+                header("location:?resource=product&action=manage");
+            } 
+        ?>
     </form>
 
 </body>

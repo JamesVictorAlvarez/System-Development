@@ -123,7 +123,7 @@ class UserCreate
 
         if ($this->user->login()) {
             $this->user->getAuthManager()->login();
-            header('Location: http://localhost/');
+            header('Location: ?resource=user&action=login');
         } else {
             $this->showMessage("Login failed, please check your username and password.");
         }
