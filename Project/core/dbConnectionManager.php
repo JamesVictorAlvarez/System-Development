@@ -1,5 +1,5 @@
 <?php
-namespace Database;
+namespace database;
 
 class DBConnectionManager{
 
