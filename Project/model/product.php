@@ -19,7 +19,7 @@ class Product {
 
     function getRow($count) {
 
-        $query = "select * from products where id = $count";
+        $query = "select * from product where id = $count";
 
         $statement = $this->dbConnection->prepare($query);
 
@@ -29,7 +29,7 @@ class Product {
     }
 
     function getAll() {
-        $query = "select * from products";
+        $query = "select * from product";
 
         $statement = $this->dbConnection->prepare($query);
         $statement->execute();
@@ -40,7 +40,7 @@ class Product {
     }
 
     function updateRow($name, $price, $available,  $count) {
-        $query = "update products set name='$name', price=$price, available=$available where id = $count";
+        $query = "update product set name='$name', price=$price, available=$available where id = $count";
 
         $statement = $this->dbConnection->prepare($query);
 
@@ -48,7 +48,7 @@ class Product {
     }
 
     function addRow($name, $price, $available) {
-        $query = "insert into products (name, price, available) values ('$name', '$price', '$available')";
+        $query = "insert into product (name, price, available) values ('$name', '$price', '$available')";
 
         $statement = $this->dbConnection->prepare($query);
 
@@ -56,7 +56,7 @@ class Product {
     }
 
     function deleteRow($count) {
-        $query = "delete from products where id = $count";
+        $query = "delete from product where id = $count";
 
         $statement = $this->dbConnection->prepare($query);
 

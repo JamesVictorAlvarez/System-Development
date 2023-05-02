@@ -50,8 +50,8 @@
             <input type='hidden' name = 'row' value =$counter>
             <input type='submit' value ='Add' name='add'>
         </form></div>";
-        if (isset($_POST['add'])) 
-            header("location:?resource=product&action=add");    
+        // if (isset($_POST['add'])) 
+        //     header("location:?resource=product&action=add");    
     if (isset($_POST['delete'])) 
         $product->deleteRow($_POST["row"]);
         header("location:?resource=product&action=manage");
