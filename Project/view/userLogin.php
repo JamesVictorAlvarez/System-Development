@@ -99,33 +99,33 @@
 </head>
 
 <body>
-<h1>User Login</h1>
-<form action="" method="post">
-    <input type="hidden" name="resource" value="user">
-    <input type="hidden" name="action" value="manage">
-    <label for="username">username:</label><br>
-    <input type="text" id="username" name="username"><br>
-    <label for="password">Password:</label><br>
-    <input type="password" id="password" name="password"><br><br>
-    <input type="submit" value="Login">
-</form>
+    <h1>User Login</h1>
+    <form action="" method="post">
+        <input type="hidden" name="resource" value="user">
+        <input type="hidden" name="action" value="manage">
+        <label for="username">username:</label><br>
+        <input type="text" id="username" name="username"><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password"><br><br>
+        <input type="submit" value="Login" name="login">
+    </form>
 </body>
+
 </html>
 
 <?php
-class UserLogin{
-    private $user;
 
-    public function __construct($user)
-    {
-        $this->user = $user;
+$user = new \model\User();
 
-        if ($this->user->login()) {
-            $this->user->getAuthManager()->login();
-            header('Location: ?resource=home&action=view');
-        } else {
-            echo("Login failed, please check your username and password.");
-        }
+if (isset($_POST['login'])) {
+
+    $user->setUsername($_POST["username"]);
+    $user->setPassword($_POST['password']);
+    if ($user->login()) {
+        $user->getAuthManager()->login();
+        header("Location: ?resource=home&action=view");
+    } else {
+        print("Login failed, please check your username and password.");
     }
 }
 ?>

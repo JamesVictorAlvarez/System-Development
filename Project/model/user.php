@@ -43,9 +43,6 @@ class User
 
         $dbPassword = $this->getPasswordByUsername();
 
-        var_dump($dbPassword);
-        var_dump(password_hash($this->password, PASSWORD_DEFAULT));
-
         if(password_verify($this->password, $dbPassword)){
 
             $verified = true;
