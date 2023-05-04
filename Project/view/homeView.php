@@ -34,14 +34,16 @@
         }
 
         .container {
-            display: grid;
+            /* display: grid;
             position: relative;
             top: 145px;
             padding: 0 40px 0 40px;
             margin: 0 50px 0 50px;
             column-gap: 20px;
             row-gap: 20px;
-            z-index: -2;
+            z-index: -2; */
+            max-width: 500px;
+            margin: 0 auto;
         }
 
         .container>div {
@@ -54,41 +56,61 @@
             box-shadow: 1px 2.4px 1.4px rgba(0, 0, 0, 0.125);
         }
 
-        .item1 {
-            grid-column: 2 / span 20;
-            grid-row: 1 / span 40;
+        .salonImageClass img{
+            display: block;
+            max-width: 100;
+            height: auto;
+            
+            /* grid-column: 2 / span 20;
+            grid-row: 1 / span 40; */
         }
 
-        .item2 {
-            grid-column: 1;
-            grid-row: 2;
+        .salonImageClass {
+            width: 100%;
         }
 
-        .item3 {
-            grid-column: 1;
-            grid-row: 3;
+
+        .image-container{
+            width: 100%;
+            height: 70vh;
+            margin-top: 50px;
+            position: relative;
         }
 
-        input[type="search"] {
-            font-size: 14px;
-            padding: 5px;
-            border: 2px solid black;
-            border-radius: 2px;
-            width: 150px;
-            background-color: #fff;
-
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
         }
 
-        button[type="submit"] {
-            font-size: 14px;
-            padding: 5px;
-            border: 2px solid black;
-            border-radius: 2px;
-            width: 70px;
-            background-color: black;
-            color: #fff;
-
+        .grey-div {
+            width: 100%;
+            height: 200px;
+            background-color: #f2f2f2;
+            position: relative;
+            top: 50px;
+            z-index: -1;
         }
+
+        .grey-div h1{
+           
+        }
+
+        .footer {
+            width: 100%;
+            height: 200px;
+            background-color: #000000;
+            position: relative;
+            top: 50px;
+            z-index: -1;
+        }
+
+        /* body {
+            margin: 0;
+            padding: 0;
+        } */
+
     </style>
     <title>Home</title>
 </head>
@@ -113,21 +135,21 @@
             <li><a href="#">About</a></li>
         </ul>
     </nav>
-    <!------------------------------------------------------||NAVBAR||------------------------------------------------------------>
+    <!------------------------------------------------------||HomePageImage||------------------------------------------------------------>
 
-    <div class="container">
-        <div class="item1">
-            Main
-        </div>
-        <div class="item2">
-            <form>
-                <input type="search" id="search-input" name="search">
-                <button type="submit">Search</button>
-            </form>
-        </div>
-        <div class="item3">
-            menu
-        </div>
+    <div class="image-container">
+            <img src="img/homePageSalon.jpg">
+    </div>
+
+    <!------------------------------------------------------||HomePage||------------------------------------------------------------>
+
+    <div class="grey-div">
+        <h1>Our Services </h1>
+    </div>
+
+     <!------------------------------------------------------||Footer||------------------------------------------------------------>
+
+     <div class="footer">
     </div>
 
 
