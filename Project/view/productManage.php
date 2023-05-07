@@ -20,6 +20,7 @@
     $html .= "<thead><th>Id</th>
                 <th>Name</th>
                 <th>Price</th>
+                <th>Category</th>
                 <th>Stock</th>
                 <th></th>
                 </thead>";
@@ -31,6 +32,7 @@
                     <td>" . $e['id'] . "</td>
                     <td>" . $e['name'] . "</td>
                     <td>" . $e['price'] . "</td>
+                    <td>" . $e['category'] . "</td>
                     <td>" . $e['available'] . "</td>
                     <td>
                         <form method='post' action='?resource=product&action=edit'>
@@ -48,13 +50,14 @@
     $html .= "<div style='display: flex; justify-content: center; padding: 20px;'>
         <form method='post'>
             <input type='hidden' name = 'row' value =$counter>
-            <input type='submit' value ='Add' name='add'>
+            <input type='submit' value ='Add' name='add' class='addButton'>
         </form></div>";
         // if (isset($_POST['add'])) 
         //     header("location:?resource=product&action=add");    
-    if (isset($_POST['delete'])) 
+    if (isset($_POST['delete'])) {
         $product->deleteRow($_POST["row"]);
         header("location:?resource=product&action=manage");
+    }
     if (isset($_POST['add'])) 
         header("location:?resource=product&action=add");
     echo $html;

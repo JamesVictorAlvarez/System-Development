@@ -115,28 +115,40 @@
     foreach ($products as $e) {
         $name = $e['name'];
         $price = $e['price'];
+        $category = $e['category'];
         $available = $e['available'];
     }
 
     $html .= '<h2>UPDATE</h2>
         <label for="name">Name:</label>
-        <input type="text" name="name" value= ' . $name . ' required>
+        <input type="text" name="name" value= "' . $name . '" required>
 
         <label for="price">Price:</label>
-        <input type="text" name="price" value=' . $price . ' required>
+        <input type="text" name="price" value="' . $price . '" required>
+
+        <label for="category">Category:</label>
+        <input type="text" name="category" value="' . $category . '" required>
 
         <label for="stock">Available:</label>
-        <input type="text" name="available" value=' . $available . ' required>
+        <input type="text" name="available" value="' . $available . '" required>
 
-        <input type="hidden" name="count" value=' . $count . '>
+        <input type="submit" value="Back" name="back">
+
+        <input type="hidden" name="count" value="' . $count . '">
         <input type="submit" value="Update" name="update">';
+        
+    
+    echo $category;
 
     $html .= "</form>";
-    echo $html;
+    
+        if (isset($_POST['back'])) 
+            header("location:?resource=product&action=manage");
         if (isset($_POST['update'])) {
-            $product->updateRow($_POST["name"], $_POST["price"], $_POST["available"], $_POST["count"]);
+            $product->updateRow($_POST["name"], $_POST["price"], $_POST["category"], $_POST["available"], $_POST["count"]);
             header("location:?resource=product&action=manage");
         } 
+    echo $html;
     ?>
 </body>
 

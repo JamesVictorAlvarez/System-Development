@@ -105,20 +105,26 @@
         <input type="hidden" name="action" value="manage">
 
         <label for="name">Name:</label>
-        <input type="text" name="name" value= ''required>
+        <input type="text" name="name" value= ''>
 
         <label for="price">Price:</label>
-        <input type="text" name="price" value='' required>
+        <input type="text" name="price" value=''>
+
+        <label for="price">Category:</label>
+        <input type="text" name="category" value=''>
 
         <label for="stock">Available:</label>
-        <input type="text" name="available" value='' required>
+        <input type="text" name="available" value=''>
 
+        <input type="submit" value="Back" name="back">
         <input type="submit" value="Add" name="add">
 
         <?php
             $product = new product();
+            if (isset($_POST['back'])) 
+                header("location:?resource=product&action=manage");
             if (isset($_POST['add'])) {
-                $product->addRow($_POST["name"], $_POST["price"], $_POST["available"]);
+                $product->addRow($_POST["name"], $_POST["price"], $_POST["category"], $_POST["available"]);
                 header("location:?resource=product&action=manage");
             } 
         ?>

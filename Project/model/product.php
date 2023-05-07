@@ -39,16 +39,16 @@ class Product {
         return $result;
     }
 
-    function updateRow($name, $price, $available,  $count) {
-        $query = "update product set name='$name', price=$price, available=$available where id = $count";
+    function updateRow($name, $price, $category, $available,  $count) {
+        $query = "update product set name='$name', price=$price, category='$category', available=$available where id = $count";
 
         $statement = $this->dbConnection->prepare($query);
 
         $statement->execute();
     }
 
-    function addRow($name, $price, $available) {
-        $query = "insert into product (name, price, available) values ('$name', '$price', '$available')";
+    function addRow($name, $price, $category, $available) {
+        $query = "insert into product (name, price, category, available) values ('$name', '$price', '$category', '$available')";
 
         $statement = $this->dbConnection->prepare($query);
 
