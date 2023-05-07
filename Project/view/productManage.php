@@ -22,6 +22,7 @@
                 <th>Price</th>
                 <th>Category</th>
                 <th>Stock</th>
+                <th>Image</th>
                 <th></th>
                 </thead>";
 
@@ -34,6 +35,7 @@
                     <td>" . $e['price'] . "</td>
                     <td>" . $e['category'] . "</td>
                     <td>" . $e['available'] . "</td>
+                    <td><img class = 'previewImage' src='img/productImages/". $e['image'] ."'></td>
                     <td>
                         <form method='post' action='?resource=product&action=edit'>
                             <input type='hidden' name = 'row' value =$counter>

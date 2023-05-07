@@ -1,9 +1,3 @@
-<?php
-
-
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -89,6 +83,35 @@
             color: #fff;
 
         }
+
+        .shop-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+        
+        .product-image {
+            width: 270px;
+            height: 270px;
+        }
+
+        .image-container {
+            color: black;
+            font-size: 20px;
+        }
+
+        .price {
+            color: gray;
+            font-size: 16px;
+            padding-bottom: 20px;
+        }
+
+        .category {
+            color: black;
+            font-size: 24px;
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+
     </style>
     <title>Home</title>
 </head>
@@ -116,17 +139,47 @@
     <!------------------------------------------------------||NAVBAR||------------------------------------------------------------>
 
     <div class="container">
+
+        <!------------------------------------------------------||SEARCH||------------------------------------------------------------>
         <div class="item1">
-            Main
+            <div class="shop-container">
+                <?php
+                $product = new product();
+
+                $products = $product->getAll();
+
+                foreach ($products as $e) {
+                    $html = 
+                    "<div class=image-container>"
+                    . "<img class = 'product-image' src='img/productImages/" . $e['image'] ."'>" . "</br>" . $e['name'] . "</br>" . "<div class = price>".$e['price']."$"."</div>" .
+                    "</div>";
+                    echo $html;
+                }
+                ?>
+            </div>
         </div>
+        <!------------------------------------------------------||SEARCH||------------------------------------------------------------>
+
+        <!------------------------------------------------------||SEARCH||------------------------------------------------------------>
         <div class="item2">
             <form>
                 <input type="search" id="search-input" name="search">
                 <button type="submit">Search</button>
             </form>
         </div>
+        <!------------------------------------------------------||SEARCH||------------------------------------------------------------>
+
         <div class="item3">
-            menu
+                <?php
+                $product = new product();
+
+                $products = $product->getCategory();
+
+                foreach ($products as $e) {
+                    $html = "<div class = category>". $e['category'] ."</div>";
+                    echo $html;
+                }
+                ?>
         </div>
     </div>
 

@@ -39,16 +39,27 @@ class Product {
         return $result;
     }
 
-    function updateRow($name, $price, $category, $available,  $count) {
-        $query = "update product set name='$name', price=$price, category='$category', available=$available where id = $count";
+    function getCategory() {
+        $query = "select distinct category from product";
+
+        $statement = $this->dbConnection->prepare($query);
+        $statement->execute();
+
+        $result = $statement->fetchAll();
+
+        return $result;
+    }
+
+    function updateRow($name, $price, $category, $available, $image,  $count) {
+        $query = "update product set name='$name', price=$price, category='$category', available=$available, image='$image' where id = $count";
 
         $statement = $this->dbConnection->prepare($query);
 
         $statement->execute();
     }
 
-    function addRow($name, $price, $category, $available) {
-        $query = "insert into product (name, price, category, available) values ('$name', '$price', '$category', '$available')";
+    function addRow($name, $price, $category, $available, $image) {
+        $query = "insert into product (name, price, category, available, image) values ('$name', '$price', '$category', '$available', '$image')";
 
         $statement = $this->dbConnection->prepare($query);
 

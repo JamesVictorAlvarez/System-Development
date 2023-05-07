@@ -25,6 +25,8 @@
         }
 
         form {
+            position: relative;
+            top: 65px;
             max-width: 500px;
             margin: 0 auto;
             padding: 20px;
@@ -100,7 +102,7 @@
 
 <body>
 
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         <input type="hidden" name="resource" value="product">
         <input type="hidden" name="action" value="manage">
 
@@ -110,23 +112,57 @@
         <label for="price">Price:</label>
         <input type="text" name="price" value=''>
 
-        <label for="price">Category:</label>
+        <label for="category">Category:</label>
         <input type="text" name="category" value=''>
 
         <label for="stock">Available:</label>
         <input type="text" name="available" value=''>
+
+        <label for="image">Upload Image:</label>
+        <input type="file" name="image" id = "image" accept=".jpg, .jpeg, .png" value=''>
+
+    </br>
+    </br>
 
         <input type="submit" value="Back" name="back">
         <input type="submit" value="Add" name="add">
 
         <?php
             $product = new product();
+
             if (isset($_POST['back'])) 
                 header("location:?resource=product&action=manage");
+
             if (isset($_POST['add'])) {
-                $product->addRow($_POST["name"], $_POST["price"], $_POST["category"], $_POST["available"]);
+                if($_FILES['image']['error'] === 4) {
+                    echo "<script> alert('Image Does Not Exist'); </script>";
+                } else {
+                    $imageName = $_FILES['image']['name'];
+                    $imageSize = $_FILES['image']['size'];
+                    $tmpName = $_FILES['image']['tmp_name'];
+
+                    $validImageExtension = ['jpg', 'jpeg', 'png'];
+                    $imageExtension = explode('.', $imageName);
+                    $imageExtension = strtolower(end($imageExtension));
+                    if(!in_array($imageExtension, $validImageExtension)) {
+                        header("location:?resource=product&action=manage");
+                        echo "<script> alert('Invalid Image Extension'); </script>";
+                    } else if($imageSize > 1000000) {
+                        echo "<script> alert('Image Size Is Too Large'); </script>";
+                        header("location:?resource=product&action=manage");
+                    } else {
+                        $newImageName = uniqid();
+                        $newImageName .= '.' . $imageExtension;
+
+                        move_uploaded_file($tmpName, './img/productImages/' . $newImageName);
+
+                    }
+                } 
+
+                $product->addRow($_POST["name"], $_POST["price"], $_POST["category"], $_POST["available"], $newImageName);
                 header("location:?resource=product&action=manage");
             } 
+            
         ?>
     </form>
 
