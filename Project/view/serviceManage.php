@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Assignment 1</title>
     <link rel="stylesheet" href="style/productDesign.css">
+    <link rel="stylesheet" href="style/sidebar.css">
 
 
         <style>
@@ -72,6 +73,46 @@
 
 <div class="add_div">
 <button onclick="location.href='?resource=service&action=add'">Add</button>
+
+<nav class="main-menu">
+        <ul>
+            <li>
+                <a href="#">
+                    <i class="fa fa-home fa-2x"></i>
+                    <span class="nav-text">
+                        Reservation
+                    </span>
+                </a>
+
+            </li>
+            <li class="has-subnav">
+                <a href="?resource=product&action=manage">
+                    <i class="fa fa-globe fa-2x"></i>
+                    <span class="nav-text">
+                        Shop
+                    </span>
+                </a>
+
+            </li>
+            <li class="has-subnav">
+                <a href="?resource=user&action=manage">
+                    <i class="fa fa-comments fa-2x"></i>
+                    <span class="nav-text">
+                        Users
+                    </span>
+                </a>
+
+            </li>
+            <li class="has-subnav">
+                <a href="?resource=service&action=manage">
+                    <i class="fa fa-camera-retro fa-2x"></i>
+                    <span class="nav-text">
+                        Service
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </nav>
 
 </div>
 

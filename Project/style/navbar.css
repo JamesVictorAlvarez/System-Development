@@ -3,22 +3,21 @@ nav {
     position: relative;
     top: 50px;
     width: 100%;
-    z-index: -1;
 }
 
-ul {
+nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0 0 0 60px;
     overflow: hidden;
 }
 
-li {
+nav li {
     float: left;
     padding: 16px 26px 16px 26px;
 }
 
-li a {
+nav li a {
     display: block;
     color: white;
     text-align: center;
@@ -26,6 +25,7 @@ li a {
     transition: color 0.35s ease-out;
 }
 
-li a:hover {
-    color: grey;
+nav li a:hover {
+    color: gray;
+    text-decoration : white underline;
 }

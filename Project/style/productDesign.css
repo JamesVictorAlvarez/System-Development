@@ -139,3 +139,8 @@ input[type="submit"]:hover {
     top: 70px;
 }
 
+.previewImage {
+    width: 100px;
+    height: 100px;
+}
+

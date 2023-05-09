@@ -123,7 +123,7 @@ if (isset($_POST['login'])) {
     $user->setPassword($_POST['password']);
     if ($user->login()) {
         $user->getAuthManager()->login();
-        header("Location: ?resource=home&action=view");
+        header("Location: ?resource=service&action=manage");
     } else {
         print("Login failed, please check your username and password.");
     }
