@@ -51,6 +51,17 @@
             background-color: #fff;
         }
 
+        input[type="password"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 3px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            background-color: #fff;
+        }
+
         input[type="submit"] {
             background-color: #121113;
             color: #fff;

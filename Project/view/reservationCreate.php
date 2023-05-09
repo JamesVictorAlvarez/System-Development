@@ -118,7 +118,7 @@ if (isset($_POST['submit'])) {
 <body>
     <form action="" method="POST">
         <input type="date" name="date">
-        <input type="time" name="time" step="600">
+        <input type="time" name="time" step="600" min="10:00" max="19:00">
         <br />
         <?php
         $service = new Service();

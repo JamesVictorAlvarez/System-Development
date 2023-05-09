@@ -113,7 +113,7 @@
 <form action="" method="post">
     <h1>Create User</h1>
     <br/>
-    <label for="username">username:</label><br>
+    <label for="username">Username:</label><br>
     <input type="text" id="username" name="username"><br>
     <label for="password">Password:</label><br>
     <input type="password" id="password" name="password"><br><br>

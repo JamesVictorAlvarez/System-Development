@@ -90,6 +90,27 @@ INSERT INTO `user` (`id`, `username`, `password`) VALUES
 (3, NULL, '$2y$10$ncMpZpx/uF8ebv4yuNRZfutiLG7fmwfw0AzAyM8C.zGW5hutWiKWO');
 
 --
+-- Table structure for table `request`
+--
+
+CREATE TABLE `request` (
+  `id` int(11) NOT NULL,
+  `service_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Table structure for table `reservation`
+--
+
+CREATE TABLE `reservation` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `request_id` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `time` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
 -- Indexes for dumped tables
 --
 
@@ -110,6 +131,20 @@ ALTER TABLE `service`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
+  
+--
+-- Indexes for table `request`
+--
+ALTER TABLE `request`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_service_id` (`service_id`);
+
+--
+-- Indexes for table `reservation`
+--
+ALTER TABLE `reservation`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_request_id` (`request_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -132,6 +167,31 @@ ALTER TABLE `service`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  
+--
+-- AUTO_INCREMENT for table `request`
+--
+ALTER TABLE `request`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  
+--
+-- AUTO_INCREMENT for table `reservation`
+--
+ALTER TABLE `reservation`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- Constraints for table `reservation`
+--
+ALTER TABLE `reservation`
+  ADD CONSTRAINT `fk_request_id` FOREIGN KEY (`request_id`) REFERENCES `request` (`id`);
+COMMIT;
+
+--
+-- Constraints for table `request`
+--
+ALTER TABLE `request`
+  ADD CONSTRAINT `fk_service_id` FOREIGN KEY (`service_id`) REFERENCES `service` (`ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

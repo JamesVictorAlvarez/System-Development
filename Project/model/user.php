@@ -122,4 +122,8 @@ class User
 
         return $statement->fetchAll();
     }
+
+    public function getId() {
+        return $this->id;
+    }
 }
