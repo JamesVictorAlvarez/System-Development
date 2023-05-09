@@ -9,6 +9,8 @@ class Request
     private $id;
     private $service_id;
 
+    private $dbConnection;
+
     function __construct() {
         $conManager = new \Database\DBConnectionManager();
         $this->dbConnection = $conManager->getConnection();
@@ -53,6 +55,14 @@ class Request
     public function setProductId($product_id)
     {
         $this->product_id = $product_id;
+    }
+
+    /**
+     * @return \PDO
+     */
+    public function getDbConnection(): \PDO
+    {
+        return $this->dbConnection;
     }
 
 

@@ -134,7 +134,6 @@ class UserCreate
 
         if ($this->user->login()) {
             $this->user->getAuthManager()->login();
-            var_dump($this->user->getAuthManager()->isLoggedIn());
             header('Location: ?resource=user&action=login');
         } else {
             // TODO: incorrect message

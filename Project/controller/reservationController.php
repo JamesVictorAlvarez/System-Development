@@ -31,8 +31,6 @@ class ReservationController
 
         $authManager = $this->user->getAuthManager();
 
-        var_dump($authManager->isLoggedIn());
-
         if (isset($_GET)) {
             if (isset($_GET['action'])) {
                 $action = $_GET['action'];
@@ -40,20 +38,23 @@ class ReservationController
                 $viewFile = "reservation" . $action;
 
                 $viewClass = "\\view\\" . "reservation" . $action;
-
-                $this->reservation = new Reservation();
                 if ($authManager->isLoggedIn()) {
                     if (isset($_POST)) {
                         if ($action == 'create') {
                             if (isset($_POST['submit'])) {
                                 if (isset($_POST['services'])) {
                                     foreach($_POST['services'] as $s) {
+                                        $reservation = new Reservation();
                                         $request = new Request();
                                         $request->setProductId($s);
                                         $request->create();
+                                        $reservation->setRequestId($request->getDbConnection()->lastInsertId());
+                                        $reservation->setUserId($this->user->getId());
+                                        $reservation->setTime($_POST['time']);
+                                        $reservation->setDate($_POST['date']);
+                                        $reservation->create();
                                     }
                                 }
-                                var_dump($_POST);
                             }
 
                             if (class_exists($viewClass)) {
