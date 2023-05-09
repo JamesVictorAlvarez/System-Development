@@ -149,7 +149,7 @@
             <li><a href="?resource=home&action=view">Home</a></li>
             <li><a href="?resource=product&action=view">Shop</a></li>
             <li><a href="#">Appointment</a></li>
-            <li><a href="#">Location</a></li>
+            <li><a href="?resource=location&action=view">Location</a></li>
             <li><a href="?resource=about&action=view">About</a></li>
         </ul>
     </nav>

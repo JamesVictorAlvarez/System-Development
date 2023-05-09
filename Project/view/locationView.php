@@ -44,7 +44,7 @@
 
         .image-container {
             width: 100%;
-            height: 70vh;
+            height: 50vh;
             margin-top: 50px;
             position: relative;
         }
@@ -383,112 +383,32 @@
             }
         }
 
-        .image-container {
-  position: relative;
-  width: 100%;
-  height: 400px;
+        .responsive-container-block {
+  display: flex;
+  flex-wrap: wrap;
+}
+.leftSection {
+  flex-basis: 50%;
+  max-width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.cherry-salon {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.rectangle {
-  width: 300px;
-  height: 200px;
-  background-color: white;
+.mapImg {
+  flex-basis: 50%;
+  max-width: 140%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
   border: 2px solid black;
-  text-align: center;
-  padding: 20px;
 }
 
-.cherry-salon-text {
-  font-size: 36px;
+.location{
   color: black;
-}
-
-.we-offer-services-text {
-  font-size: 16px;
-  color: black;
-}
-
-.book-now-button {
-  background-color: black;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 18px;
-  margin-top: 20px;
-  cursor: pointer;
-  border-radius: 10px 10px 10px 10px;
-
-}
-
-.image-container {
-  display: flex;
-  justify-content: center;
-}
-
-.service-container {
-  width: 25%;
-  padding: 10px;
-}
-
-.service-image {
-  position: relative;
-}
-
-.service-name {
-  position: absolute;
-  bottom: 0;
-  left: 15%; /* Aligns with the left edge of the image */
-  width: 70%; /* Same width as the image */
-  background-color: black;
-  color: white;
-  text-align: center;
-  font-size: 20px;
-  padding: 15px 0;
-  border-radius: 0 0 10px 10px;
-}
-
-.service-image img {
-  display: block;
-  margin: 0 auto;
-  width: 70%; /* Change to 100% to have the same width as the black section */
-  height: 400px;
-  object-fit: cover;
-  border-radius: 10px;
-}
-
-.services-title {
   font-size: 50px;
-  text-align: center;
-  margin-top: 50px;
-  color: black;
-
-}
-
-.view-all-services-button {
-  display: flex;
-  justify-content: center;
-  margin-top: 60px;
-}
-
-.black-button {
-  background-color: black;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.white-text {
-  color: white;
 }
 
 
@@ -521,65 +441,32 @@
     <!------------------------------------------------------||HomePageImage||------------------------------------------------------------>
 
     <div class="image-container">
-  <div class="cherry-salon">
-    <div class="rectangle">
-      <h1 class="cherry-salon-text">Cherry Salon</h1>
-      <p class="we-offer-services-text">Welcome to our salon, where we believe that everyone deserves to look and feel their best.</p>
-      <button class="book-now-button" onclick="window.location.href='?resource=?&action=?'">Book Now</button>
+        <img src="img/locationPageheader.jpg">
     </div>
-  </div>
-  <img src="img/homePageSalon.jpg">
-</div>
 
     <hr class="solid">
-    <!------------------------------------------------------||HomePageService||------------------------------------------------------------>
-    
-    <h2 class="services-title">Our Services</h2>
 
-    <div class="image-container">
-  <div class="service-container">
-    <div class="service-image">
-      <img src="img/haircut.jpg">
-      <div class="service-name">
-        Haircut for All
-      </div>
+    <div class="responsive-container-block bigContainer">
+  <div class="responsive-container-block Container">
+    <div class="allText">
+      <p class="location">
+        Location
+      </p>
+      <p class="text-blk subHeadingText" style="font-size: 24px;">
+        Cherry Salon, 685 Bd de la Côte Vertu Ouest<br>
+        Saint-Laurent, QC<br>
+        H4L 1Y2
+      </p>
+      <a class="explore" style="border-radius: 20px;" href="https://www.google.com/maps/dir//Cherry+Salon,+685+Bd+de+la+C%C3%B4te+Vertu,+Saint-Laurent,+Quebec+H4L+1Y2/@45.5214914,-73.6754806,17z/data=!4m17!1m7!3m6!1s0x4cc919357ed5967d:0x46c6c72a4fd5addb!2sCherry+Salon!8m2!3d45.5213806!4d-73.6739858!16s%2Fg%2F11ssjvxl30!4m8!1m0!1m5!1m1!1s0x4cc919357ed5967d:0x46c6c72a4fd5addb!2m2!1d-73.6739261!2d45.5213434!3e3" target="_blank">
+        Get Directions
+      </a>
     </div>
-  </div>
-  
-  <div class="service-container">
-    <div class="service-image">
-      <img src="img/perm.jpg">
-      <div class="service-name">
-        Perm
-      </div>
-    </div>
-  </div>
-  
-  <div class="service-container">
-    <div class="service-image">
-      <img src="img/pedicure.jpg">
-      <div class="service-name">
-        Manicure/Pedicure
-      </div>
-    </div>
-  </div>
-  
-  <div class="service-container">
-    <div class="service-image">
-      <img src="img/haircolor.jpg">
-      <div class="service-name">
-        Hair Coloring
-      </div>
+    <div class="ultimateImg">
+      <img class="mapImg" src="img/locationMap.png">
     </div>
   </div>
 </div>
 
-<div class="services-container">
-  <!-- services display code goes here -->
-  <div class="view-all-services-button">
-    <button class="black-button white-text">View All Services</button>
-  </div>
-</div>
 
 
     <!------------------------------------------------------||HomePage||------------------------------------------------------------>
