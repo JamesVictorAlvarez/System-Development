@@ -1,3 +1,17 @@
+<?php
+namespace view;
+use Service;
+
+require_once(dirname(__DIR__) . "/model/service.php");
+
+
+if(isset($_POST['submit'])) {
+    $date = $_POST['date'];
+    echo $date;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -97,35 +111,20 @@
         }
     </style>
 </head>
-
 <body>
-<h1>User Login</h1>
-<form action="" method="post">
-    <input type="hidden" name="resource" value="user">
-    <input type="hidden" name="action" value="manage">
-    <label for="username">username:</label><br>
-    <input type="text" id="username" name="username"><br>
-    <label for="password">Password:</label><br>
-    <input type="password" id="password" name="password"><br><br>
-    <input type="submit" value="Login">
+<form action="" method="POST">
+    <input type="date" name="date">
+    <input type="time" name="time" step="600">
+    <br/>
+    <?php
+    $service = new Service();
+    foreach ($service->getAll() as $s) {
+        echo "<input type=\"checkbox\" name=\"services[]\" value={$s['ID']}>{$s['service_name']}";
+        echo "<br/>";
+    }
+    ?>
+    <br/>
+    <input type="submit" name="submit" value="Reserve Appointment">
 </form>
 </body>
 </html>
-
-<?php
-class UserLogin{
-    private $user;
-
-    public function __construct($user)
-    {
-        $this->user = $user;
-
-        if ($this->user->login()) {
-            $this->user->getAuthManager()->login();
-            header('Location: ?resource=home&action=view');
-        } else {
-            echo("Login failed, please check your username and password.");
-        }
-    }
-}
-?>

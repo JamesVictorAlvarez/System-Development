@@ -1,4 +1,3 @@
-namespace view;
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,6 +41,17 @@ namespace view;
         }
 
         input[type="text"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 3px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            background-color: #fff;
+        }
+
+        input[type="password"] {
             display: block;
             width: 100%;
             padding: 10px;
@@ -100,8 +110,9 @@ namespace view;
 </head>
 
 <body>
-<h1>User Login</h1>
 <form action="" method="post">
+    <h1>Create User</h1>
+    <br/>
     <label for="username">username:</label><br>
     <input type="text" id="username" name="username"><br>
     <label for="password">Password:</label><br>
@@ -123,9 +134,11 @@ class UserCreate
 
         if ($this->user->login()) {
             $this->user->getAuthManager()->login();
+            var_dump($this->user->getAuthManager()->isLoggedIn());
             header('Location: ?resource=user&action=login');
         } else {
-            $this->showMessage("Login failed, please check your username and password.");
+            // TODO: incorrect message
+            echo("oops");
         }
     }
 }
