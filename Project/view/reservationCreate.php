@@ -1,11 +1,13 @@
 <?php
+
 namespace view;
+
 use Service;
 
 require_once(dirname(__DIR__) . "/model/service.php");
 
 
-if(isset($_POST['submit'])) {
+if (isset($_POST['submit'])) {
     $date = $_POST['date'];
     echo $date;
 }
@@ -19,6 +21,7 @@ if(isset($_POST['submit'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/sidebar.css">
     <title>Assignment 1</title>
     <style>
         * {
@@ -111,20 +114,63 @@ if(isset($_POST['submit'])) {
         }
     </style>
 </head>
+
 <body>
-<form action="" method="POST">
-    <input type="date" name="date">
-    <input type="time" name="time" step="600">
-    <br/>
-    <?php
-    $service = new Service();
-    foreach ($service->getAll() as $s) {
-        echo "<input type=\"checkbox\" name=\"services[]\" value={$s['ID']}>{$s['service_name']}";
-        echo "<br/>";
-    }
-    ?>
-    <br/>
-    <input type="submit" name="submit" value="Reserve Appointment">
-</form>
+    <form action="" method="POST">
+        <input type="date" name="date">
+        <input type="time" name="time" step="600">
+        <br />
+        <?php
+        $service = new Service();
+        foreach ($service->getAll() as $s) {
+            echo "<input type=\"checkbox\" name=\"services[]\" value={$s['ID']}>{$s['service_name']}";
+            echo "<br/>";
+        }
+        ?>
+        <br />
+        <input type="submit" name="submit" value="Reserve Appointment">
+
+        <nav class="main-menu">
+            <ul>
+                <li>
+                    <a href="?resource=reservation&action=create">
+                        <i class="fa fa-calendar fa-2x"></i>
+                        <span class="nav-text">
+                            Reservation
+                        </span>
+                    </a>
+
+                </li>
+                <li class="has-subnav">
+                    <a href="?resource=product&action=manage">
+                        <i class="fa fa-shopping-cart fa-2x"></i>
+                        <span class="nav-text">
+                            Shop
+                        </span>
+                    </a>
+
+                </li>
+                <li class="has-subnav">
+                    <a href="?resource=service&action=manage">
+                        <i class="fa fa-bookmark fa-2x"></i>
+                        <span class="nav-text">
+                            Service
+                        </span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="logout">
+                <li>
+                    <a href="?resource=home&action=view">
+                        <i class="fa fa-power-off fa-2x"></i>
+                        <span class="nav-text">
+                            Logout
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </form>
 </body>
+
 </html>

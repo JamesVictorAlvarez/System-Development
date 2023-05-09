@@ -12,6 +12,9 @@ class Reservation
     private $date;
     private $time;
 
+    
+    private $dbConnection;
+
     function __construct() {
         $conManager = new \Database\DBConnectionManager();
         $this->dbConnection = $conManager->getConnection();
