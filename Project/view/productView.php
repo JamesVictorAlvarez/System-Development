@@ -150,7 +150,7 @@
             <li><a href="?resource=product&action=view">Shop</a></li>
             <li><a href="#">Appointment</a></li>
             <li><a href="#">Location</a></li>
-            <li><a href="#">About</a></li>
+            <li><a href="?resource=about&action=view">About</a></li>
         </ul>
     </nav>
     <!------------------------------------------------------||NAVBAR||------------------------------------------------------------>
@@ -250,7 +250,7 @@
                         <li><a href="?resource=product&action=view">Shop</a></li>
                         <li><a>Appointments</a></li>
                         <li><a>Location</a></li>
-                        <li><a>About</a></li>
+                        <li><a href="?resource=about&action=view">About</a></li>
                     </ul>
                 </div>
                 <div class="col">
