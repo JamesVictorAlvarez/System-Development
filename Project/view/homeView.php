@@ -14,6 +14,7 @@
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <link rel="stylesheet" href="style/navbar.css">
     <link rel="stylesheet" href="style/logo.css">
+    <link rel="stylesheet" href="style/footer.css">
     <style>
         * {
             padding: 0;
@@ -97,15 +98,6 @@
            
         }
 
-        .footer {
-            width: 100%;
-            height: 200px;
-            background-color: #000000;
-            position: relative;
-            top: 50px;
-            z-index: -1;
-        }
-
         /* body {
             margin: 0;
             padding: 0;
@@ -118,10 +110,10 @@
 <body>
     <!------------------------------------------------------||LOGO||------------------------------------------------------------>
     <div class="top-left">
-        <p>LOGO</p>
+        <p class="logo">LOGO</p>
     </div>
     <div class="top-right">
-        <p>Login</p>
+        <p class="login"><a href="?resource=user&action=login">Login</a></p>
     </div>
     <!------------------------------------------------------||LOGO||------------------------------------------------------------>
 
@@ -129,10 +121,10 @@
     <nav>
         <ul>
             <li><a href="?resource=home&action=view">Home</a></li>
-            <li><a href="?resource=product&action=manage">Shop</a></li>
+            <li><a href="?resource=product&action=view">Shop</a></li>
             <li><a href="#">Appointment</a></li>
             <li><a href="#">Location</a></li>
-            <li><a href="#">About</a></li>
+            <li><a href="?resource=about&action=view">About</a></li>
         </ul>
     </nav>
     <!------------------------------------------------------||HomePageImage||------------------------------------------------------------>
@@ -149,8 +141,51 @@
 
      <!------------------------------------------------------||Footer||------------------------------------------------------------>
 
-     <div class="footer">
-    </div>
+     <footer>
+        <div class="footer">
+            <div class="contain">
+                <div class="col">
+                    <h2>Cherry Salon</h2>
+                    <ul>
+                        <li>685 Bd de la Cote Vertu Ouest</li>
+                        <li> Saint-Laurent, QC</li>
+                        <li>H4L 1Y2</li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <h2>Hours</h2>
+                    <ul>
+                        <li>Mon: Closed</li>
+                        <li>Tue: 10:00 AM - 7:00 PM</li>
+                        <li>Wed: 10:00 AM - 7:00 PM</li>
+                        <li>Thu: 10:00 AM - 7:00 PM</li>
+                        <li>Fri: 10:00 AM - 7:00 PM</li>
+                        <li>Sat: 10:00 AM - 7:00 PM</li>
+                        <li>Sun: 10:00 AM - 7:00 PM</li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <h2>Explore</h2>
+                    <ul>
+                        <li><a href="?resource=home&action=view">Home</a></li>
+                        <li><a href="?resource=product&action=view">Shop</a></li>
+                        <li><a>Appointments</a></li>
+                        <li><a>Location</a></li>
+                        <li><a href="?resource=about&action=view">About</a></li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <h2>Resources</h2>
+                    <ul>
+                        <li>Webmail</li>
+                        <li>Web templates</li>
+                        <li>Email templates</li>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </footer>
 
 
 </body>

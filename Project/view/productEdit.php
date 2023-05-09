@@ -25,6 +25,8 @@
         }
 
         form {
+            position: relative;
+            top: 60px;
             max-width: 500px;
             margin: 0 auto;
             padding: 20px;
@@ -104,7 +106,7 @@
     $product = new product();
 
     // Creating the Form
-    $html = '<form method="post">';
+    $html = '<form method="post" enctype="multipart/form-data">';
 
     if (isset($_POST['row'])) {
         $count = $_POST['row'];
@@ -115,28 +117,72 @@
     foreach ($products as $e) {
         $name = $e['name'];
         $price = $e['price'];
+        $category = $e['category'];
         $available = $e['available'];
     }
 
     $html .= '<h2>UPDATE</h2>
         <label for="name">Name:</label>
-        <input type="text" name="name" value= ' . $name . ' required>
+        <input type="text" name="name" value= "' . $name . '" required>
 
         <label for="price">Price:</label>
-        <input type="text" name="price" value=' . $price . ' required>
+        <input type="text" name="price" value="' . $price . '" required>
+
+        <label for="category">Category:</label>
+        <input type="text" name="category" value="' . $category . '" required>
 
         <label for="stock">Available:</label>
-        <input type="text" name="available" value=' . $available . ' required>
+        <input type="text" name="available" value="' . $available . '" required>
 
-        <input type="hidden" name="count" value=' . $count . '>
+        <label for="image">Change Image:</label>
+        <input type="file" name="image" value="' . $available . '">
+
+        </br>
+        </br>
+
+        <input type="submit" value="Back" name="back">
+
+        <input type="hidden" name="count" value="' . $count . '">
         <input type="submit" value="Update" name="update">';
+        
+    
+    echo $category;
 
     $html .= "</form>";
-    echo $html;
+    
+        if (isset($_POST['back'])) 
+            header("location:?resource=product&action=manage");
         if (isset($_POST['update'])) {
-            $product->updateRow($_POST["name"], $_POST["price"], $_POST["available"], $_POST["count"]);
+
+            if($_FILES['image']['error'] === 4) {
+                echo "<script> alert('Image Does Not Exist'); </script>";
+            } else {
+                $imageName = $_FILES['image']['name'];
+                $imageSize = $_FILES['image']['size'];
+                $tmpName = $_FILES['image']['tmp_name'];
+
+                $validImageExtension = ['jpg', 'jpeg', 'png'];
+                $imageExtension = explode('.', $imageName);
+                $imageExtension = strtolower(end($imageExtension));
+                if(!in_array($imageExtension, $validImageExtension)) {
+                    header("location:?resource=product&action=manage");
+                    echo "<script> alert('Invalid Image Extension'); </script>";
+                } else if($imageSize > 1000000) {
+                    echo "<script> alert('Image Size Is Too Large'); </script>";
+                    header("location:?resource=product&action=manage");
+                } else {
+                    $newImageName = uniqid();
+                    $newImageName .= '.' . $imageExtension;
+
+                    move_uploaded_file($tmpName, './img/productImages/' . $newImageName);
+
+                }
+            }
+
+            $product->updateRow($_POST["name"], $_POST["price"], $_POST["category"], $_POST["available"], $newImageName, $_POST["count"]);
             header("location:?resource=product&action=manage");
         } 
+    echo $html;
     ?>
 </body>
 

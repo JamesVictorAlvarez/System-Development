@@ -21,8 +21,7 @@ class AuthenticationManager {
 
     }
 
-    function isLoggedIn(): bool
-    {
+    function isLoggedIn(){
 
         session_name("login_session");
 
