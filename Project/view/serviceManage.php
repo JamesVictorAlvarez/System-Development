@@ -1,5 +1,5 @@
 <title> Service Page</title>
-<h2>Service Manage</h2>
+
 <head> 
 <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -31,6 +31,7 @@
             box-shadow: 1px 2.4px 1.4px rgba(0, 0, 0, 0.125);
         }
 
+
         </style>
         
 </head>
@@ -50,29 +51,26 @@
     $html .= "<th> ID </th>
           <th> Service Name </th>";
 
-          
-
     foreach ($services as $e) {
         $html .= '<tr>';
         $html .= '<td>' . $e['ID'] . '</td>';
         $html .= '<td>' . $e['service_name'] . '</td>';
         $html .= '<td><a href="?resource=service&action=edit&row=' . $e['ID'] . '"> Edit</a></td>';
         $html .= '<td><a href="?resource=service&action=remove&row=' . $e['ID'] . '"> Remove</a></td>';
-        
-        
         $html .= '</tr>';
     }
+
+    // Add the button row at the bottom
+    $html .= '<tr><td colspan="4" class="add_div"><button onclick="location.href=\'?resource=service&action=add\'">Add</button></td></tr>';
+
     $html .= "</table>";
-    
 
     echo $html;
-
-    
-
 ?>
 
-<div class="add_div">
-<button onclick="location.href='?resource=service&action=add'">Add</button>
+
+<!-- <div class="add_div">
+<button onclick="location.href='?resource=service&action=add'">Add</button> -->
 
 <nav class="main-menu">
         <ul>

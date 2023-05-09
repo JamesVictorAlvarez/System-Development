@@ -1,3 +1,17 @@
+<?php
+namespace view;
+use Service;
+
+require_once(dirname(__DIR__) . "/model/service.php");
+
+
+if(isset($_POST['submit'])) {
+    $date = $_POST['date'];
+    echo $date;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,17 +55,6 @@
         }
 
         input[type="text"] {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            border: none;
-            border-radius: 3px;
-            margin-bottom: 20px;
-            box-sizing: border-box;
-            background-color: #fff;
-        }
-
-        input[type="password"] {
             display: block;
             width: 100%;
             padding: 10px;
@@ -108,38 +111,20 @@
         }
     </style>
 </head>
-
 <body>
-<form action="" method="post">
-    <h1>Create User</h1>
+<form action="" method="POST">
+    <input type="date" name="date">
+    <input type="time" name="time" step="600">
     <br/>
-    <label for="username">username:</label><br>
-    <input type="text" id="username" name="username"><br>
-    <label for="password">Password:</label><br>
-    <input type="password" id="password" name="password"><br><br>
-    <input type="submit" value="Register">
+    <?php
+    $service = new Service();
+    foreach ($service->getAll() as $s) {
+        echo "<input type=\"checkbox\" name=\"services[]\" value={$s['ID']}>{$s['service_name']}";
+        echo "<br/>";
+    }
+    ?>
+    <br/>
+    <input type="submit" name="submit" value="Reserve Appointment">
 </form>
 </body>
 </html>
-
-<?php
-
-class UserCreate
-{
-    private $user;
-
-    public function __construct($user)
-    {
-        $this->user = $user;
-
-        if ($this->user->login()) {
-            $this->user->getAuthManager()->login();
-            header('Location: ?resource=user&action=login');
-        } else {
-            // TODO: incorrect message
-            echo("oops");
-        }
-    }
-}
-
-?>

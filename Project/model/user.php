@@ -43,7 +43,6 @@ class User
 
         $dbPassword = $this->getPasswordByUsername();
 
-
         if(password_verify($this->password, $dbPassword)){
 
             $verified = true;
