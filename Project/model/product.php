@@ -39,6 +39,17 @@ class Product {
         return $result;
     }
 
+    function getProduct($category) {
+        $query = "select * from product where category = $category";
+
+        $statement = $this->dbConnection->prepare($query);
+        $statement->execute();
+
+        $result = $statement->fetchAll();
+
+        return $result;
+    }
+
     function getCategory() {
         $query = "select distinct category from product";
 

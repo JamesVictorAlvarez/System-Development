@@ -129,7 +129,7 @@
     <nav>
         <ul>
             <li><a href="?resource=home&action=view">Home</a></li>
-            <li><a href="?resource=product&action=manage">Shop</a></li>
+            <li><a href="?resource=product&action=view">Shop</a></li>
             <li><a href="#">Appointment</a></li>
             <li><a href="#">Location</a></li>
             <li><a href="#">About</a></li>
