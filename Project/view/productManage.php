@@ -102,7 +102,7 @@
         ?>
         <ul class="logout">
             <li>
-                <a href="?resource=home&action=view">
+                <a href="?resource=home&action=view&status=logout">
                     <i class="fa fa-power-off fa-2x"></i>
                     <span class="nav-text">
                         Logout

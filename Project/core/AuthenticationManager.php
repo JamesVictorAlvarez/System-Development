@@ -43,10 +43,11 @@ class AuthenticationManager {
     }
 
     function logout(){
+        session_start();
 
         $_SESSION = array();
 
-        session_destroy ();
+        session_destroy();
 
         setcookie('user', $this->user->getUsername(), time()-3600);
 

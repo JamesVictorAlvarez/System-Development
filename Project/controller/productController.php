@@ -31,7 +31,7 @@ class ProductController{
 
                 $viewClass = "\\view\\"."product".$action;
 
-                if ($authManager->isLoggedIn()) {
+                if ($action == "view" || $authManager->isLoggedIn()) {
                     if(class_exists($viewClass)){
 
                     }

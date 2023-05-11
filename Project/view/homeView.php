@@ -1,3 +1,23 @@
+<?php
+  if (isset($_GET['status'])) {
+    $user = new \model\User();
+
+        if(isset($_COOKIE)){
+            if(isset($_COOKIE['user'])){
+
+                $username = $_COOKIE['user'];
+
+                $user = $user->getUserByUsername($username)[0];
+
+            }
+        }
+
+    $user->logout();
+  }
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
