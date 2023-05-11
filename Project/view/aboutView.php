@@ -472,17 +472,16 @@
                         <li><a href="?resource=home&action=view">Home</a></li>
                         <li><a href="?resource=product&action=view">Shop</a></li>
                         <li><a>Appointments</a></li>
-                        <li><a>Location</a></li>
+                        <li><a href="?resource=location&action=view">Location</a></li>
                         <li><a href="?resource=about&action=view">About</a></li>
                     </ul>
                 </div>
+                <div class="col"></div>
                 <div class="col">
-                    <h2>Resources</h2>
-                    <ul>
-                        <li>Webmail</li>
-                        <li>Web templates</li>
-                        <li>Email templates</li>
-                    </ul>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2795.440082417717!2d-73.67620018255616!3d45.521348899999985!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cc91842b35a9495%3A0xe97488b9f56c5753!2s685%20Boulevard%20Cote%20Vertu%20Ouest%2C%20Saint-Laurent%2C%20QC%20H4L%201Y2!5e0!3m2!1sen!2sca!4v1683814730060!5m2!1sen!2sca"
+                        width="400" height="200" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
                 <div class="clearfix"></div>
             </div>
