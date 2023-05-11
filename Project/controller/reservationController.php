@@ -62,6 +62,8 @@ class ReservationController
                             }
                         }
                     }
+                } else {
+                    header('location:?resource=user&action=login');
                 }
             }
 
