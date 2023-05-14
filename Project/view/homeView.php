@@ -15,7 +15,6 @@
     $user->logout();
   }
 
-
 ?>
 
 <!DOCTYPE html>
@@ -556,50 +555,30 @@
     
     <h2 class="services-title">Our Services</h2>
 
-    <div class="image-container">
-  <div class="service-container">
-    <div class="service-image">
-      <img src="img/haircut.jpg">
-      <div class="service-name">
-        Haircut for All
-      </div>
-    </div>
-  </div>
-  
-  <div class="service-container">
-    <div class="service-image">
-      <img src="img/perm.jpg">
-      <div class="service-name">
-        Perm
-      </div>
-    </div>
-  </div>
-  
-  <div class="service-container">
-    <div class="service-image">
-      <img src="img/pedicure.jpg">
-      <div class="service-name">
-        Manicure/Pedicure
-      </div>
-    </div>
-  </div>
-  
-  <div class="service-container">
-    <div class="service-image">
-      <img src="img/haircolor.jpg">
-      <div class="service-name">
-        Hair Coloring
-      </div>
-    </div>
-  </div>
+<div class="image-container">
+  <?php
+    require_once(dirname(__DIR__) . "/model/Service.php");
+
+    $service = new Service();
+    $services = $service->getAll(); // Get all services from the database
+    
+    foreach ($services as $s) {
+      $html = 
+      "<div class='service-container'>
+          <div class='service-image'>
+              <img src='img/serviceImages/" . $s['service_image'] . "'>
+              <div class='service-name'>" . $s['service_name'] . "</div>
+          </div>
+      </div>";
+      echo $html;
+    }
+  ?>
 </div>
 
-<div class="services-container">
-  <!-- services display code goes here -->
-  <div class="view-all-services-button">
-    <button class="black-button white-text">View All Services</button>
-  </div>
+<div class="arrow-container">
+  <div class="arrow"></div>
 </div>
+
 
 
     <!------------------------------------------------------||HomePage||------------------------------------------------------------>
@@ -608,7 +587,6 @@
 
     <!------------------------------------------------------||Footer||------------------------------------------------------------>
 
-    <footer>
         <div class="footer">
             <div class="contain">
                 <div class="col">
@@ -651,7 +629,6 @@
                 <div class="clearfix"></div>
             </div>
         </div>
-    </footer>
 
 
 </body>

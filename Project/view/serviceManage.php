@@ -35,7 +35,6 @@
 </head>
 
 
-
 <?php
 $service = new Service();
 
@@ -47,24 +46,27 @@ $services = $service->getAll();
 $html = '<table border=1 id="servicestable">';
 
 $html .= "<th> ID </th>
-          <th> Service Name </th>";
+          <th> Service Name </th>
+          <th> Image </th>";
 
 foreach ($services as $e) {
     $html .= '<tr>';
     $html .= '<td>' . $e['ID'] . '</td>';
     $html .= '<td>' . $e['service_name'] . '</td>';
+    $html .= '<td><img class="previewImage" src="img/serviceImages/' . $e['service_image'] . '"></td>';
     $html .= '<td><a href="?resource=service&action=edit&row=' . $e['ID'] . '"> Edit</a></td>';
     $html .= '<td><a href="?resource=service&action=remove&row=' . $e['ID'] . '"> Remove</a></td>';
     $html .= '</tr>';
 }
 
 // Add the button row at the bottom
-$html .= '<tr><td colspan="4" class="add_div"><button onclick="location.href=\'?resource=service&action=add\'">Add</button></td></tr>';
+$html .= '<tr><td colspan="5" class="add_div"><button onclick="location.href=\'?resource=service&action=add\'">Add</button></td></tr>';
 
 $html .= "</table>";
 
 echo $html;
 ?>
+
 
 
 <!-- <div class="add_div">
