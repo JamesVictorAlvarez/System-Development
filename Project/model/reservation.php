@@ -1,7 +1,7 @@
 <?php
 
 namespace model;
-require(dirname(__DIR__) . "/core/dbconnectionmanager.php");
+require_once(dirname(__DIR__) . "/core/dbconnectionmanager.php");
 
 class Reservation
 {
@@ -9,6 +9,8 @@ class Reservation
     private $id;
     private $user_id;
     private $request_id;
+    private $first_name;
+    private $last_name;
     private $date;
     private $time;
 
@@ -22,11 +24,11 @@ class Reservation
 
     function create()
     {
-        $query = "INSERT INTO reservation (user_id, request_id, date, time) VALUES(:user_id, :request_id, :date, :time)";
+        $query = "INSERT INTO reservation (request_id, first_name, last_name, date, time) VALUES(:request_id, :first_name, :last_name, :date, :time)";
 
         $statement = $this->dbConnection->prepare($query);
 
-        return $statement->execute(['user_id' => $this->user_id, 'request_id' => $this->request_id, 'date' => $this->date, 'time' => $this->time]);
+        return $statement->execute(['request_id' => $this->request_id, 'first_name' => $this->first_name, 'last_name' => $this->last_name, 'date' => $this->date, 'time' => $this->time]);
     }
 
     /**
@@ -91,6 +93,81 @@ class Reservation
     public function setTime($time)
     {
         $this->time = $time;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFirstName()
+    {
+        return $this->first_name;
+    }
+
+    /**
+     * @param mixed $first_name
+     */
+    public function setFirstName($first_name)
+    {
+        $this->first_name = $first_name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLastName()
+    {
+        return $this->last_name;
+    }
+
+    /**
+     * @param mixed $last_name
+     */
+    public function setLastName($last_name)
+    {
+        $this->last_name = $last_name;
+    }
+
+    function getAll(){
+        $query = "select * from reservation";
+
+        $statement = $this->dbConnection->prepare($query);
+        $statement->execute();
+
+        $result = $statement->fetchAll();
+
+        return $result;
+    }
+
+    function getRow($id){
+        $query = "select * from reservation where ID=:id";
+
+        $statement = $this->dbConnection->prepare($query);
+
+        $statement->execute(['id'=>$this->id]);
+
+        return $result = $statement->fetchAll();
+    }
+
+    function updateRow($id, $request_id, $first_name, $last_name, $date, $time)
+    {
+        $query = "update reservation set request_id=:request_id, first_name=:first_name, last_name=:last_name, date=:date, time=:time where id = $id";
+        $statement = $this->dbConnection->prepare($query);
+        $statement->execute(['request_id' => $this->request_id, 'first_name' => $this->first_name, 'last_name' => $this->last_name, 'date' => $this->date, 'time' => $this->time]);
+    }
+
+    public function removeRow($id) {
+        $query = "DELETE FROM reservation WHERE id=:id";
+
+        $statement = $this->dbConnection->prepare($query);
+
+        $statement->bindValue(":id", $id, PDO::PARAM_INT);
+
+        $result = $statement->execute();
+
+
+        header("Location: ?resource=reservation&action=manage");
+        exit;
+
     }
 
 }

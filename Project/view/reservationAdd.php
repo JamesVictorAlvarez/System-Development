@@ -1,21 +1,10 @@
-<?php
-
-namespace view;
-
-use Service;
-
-require_once(dirname(__DIR__) . "/model/service.php");
-
-?>
-
-<!DOCTYPE html>
-<html lang="en">
+<title> Add Service </title>
+<h2> Add Service </h2>
 
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style/sidebar.css">
     <title>Assignment 1</title>
     <style>
         * {
@@ -109,62 +98,22 @@ require_once(dirname(__DIR__) . "/model/service.php");
     </style>
 </head>
 
-<body>
-    <form action="" method="POST">
-        <input type="date" name="date">
-        <input type="time" name="time" step="600" min="10:00" max="19:00">
-        <br/>
-        <?php
-        $service = new Service();
-        foreach ($service->getAll() as $s) {
-            echo "<input type=\"checkbox\" name=\"services[]\" value={$s['ID']}>{$s['service_name']}";
-            echo "<br/>";
-        }
-        ?>
-        <br />
-        <input type="submit" name="submit" value="Reserve Appointment">
+<?php
+if (isset($_POST['submit'])) {
+    $service = new Service();
+    $service->addRow($_POST['service_name'], $_POST['count']);
 
-        <nav class="main-menu">
-            <ul>
-                <li>
-                    <a href="?resource=reservation&action=create">
-                        <i class="fa fa-calendar fa-2x"></i>
-                        <span class="nav-text">
-                            Reservation
-                        </span>
-                    </a>
+    // Redirect back to the service page after adding the new service
+    header('Location: ?resource=service');
+    exit;
+}
+?>
 
-                </li>
-                <li class="has-subnav">
-                    <a href="?resource=product&action=manage">
-                        <i class="fa fa-shopping-cart fa-2x"></i>
-                        <span class="nav-text">
-                            Shop
-                        </span>
-                    </a>
-
-                </li>
-                <li class="has-subnav">
-                    <a href="?resource=service&action=manage">
-                        <i class="fa fa-bookmark fa-2x"></i>
-                        <span class="nav-text">
-                            Service
-                        </span>
-                    </a>
-                </li>
-            </ul>
-            <ul class="logout">
-                <li>
-                    <a href="?resource=home&action=view&status=logout">
-                        <i class="fa fa-power-off fa-2x"></i>
-                        <span class="nav-text">
-                            Logout
-                        </span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </form>
-</body>
-
-</html>
+<form method="POST">
+    <label>Service Name: </label>
+    <input type="text" name="service_name" required><br><br>
+    <label>Count: </label>
+    <input type="number" name="count" required><br><br>
+    <input type="submit" name="submit" value="Add Service">
+    <input type="submit" value="Cancel" onclick="location.href='?resource=service&action=manage'">
+</form>

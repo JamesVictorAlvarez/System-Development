@@ -2,7 +2,7 @@
 
 namespace controller;
 
-require(dirname(__DIR__)."/model/location.php");
+require_once(dirname(__DIR__)."/model/location.php");
 
 
 class LocationController{

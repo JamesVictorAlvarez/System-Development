@@ -6,7 +6,7 @@ use model\Request;
 use model\Reservation;
 use model\User;
 
-require(dirname(__DIR__) . "/model/reservation.php");
+require_once(dirname(__DIR__) . "/model/reservation.php");
 
 
 class ReservationController
@@ -38,29 +38,27 @@ class ReservationController
                 $viewFile = "reservation" . $action;
 
                 $viewClass = "\\view\\" . "reservation" . $action;
-                if ($authManager->isLoggedIn()) {
+                if ($action == "view" || $authManager->isLoggedIn()) {
                     if (isset($_POST)) {
-                        if ($action == 'create') {
-                            if (isset($_POST['submit'])) {
-                                if (isset($_POST['services'])) {
-                                    foreach($_POST['services'] as $s) {
-                                        $reservation = new Reservation();
-                                        $request = new Request();
-                                        $request->setProductId($s);
-                                        $request->create();
-                                        $reservation->setRequestId($request->getDbConnection()->lastInsertId());
-                                        $reservation->setUserId($this->user->getId());
-                                        $reservation->setTime($_POST['time']);
-                                        $reservation->setDate($_POST['date']);
-                                        $reservation->create();
-                                    }
+                        if (isset($_POST['submit'])) {
+                            if (isset($_POST['services'])) {
+                                foreach($_POST['services'] as $s) {
+                                    $reservation = new Reservation();
+                                    $request = new Request();
+                                    $request->setProductId($s);
+                                    $request->create();
+                                    $reservation->setRequestId($request->getDbConnection()->lastInsertId());
+                                    $reservation->setTime($_POST['time']);
+                                    $reservation->setDate($_POST['date']);
+                                    $reservation->setFirstName($_POST['first_name']);
+                                    $reservation->setLastName($_POST['last_name']);
+                                    $reservation->create();
                                 }
                             }
-
-                            if (class_exists($viewClass)) {
-
-                            }
                         }
+                    }
+                    if (class_exists($viewClass)) {
+
                     }
                 } else {
                     header('location:?resource=user&action=login');
