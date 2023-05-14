@@ -48,20 +48,33 @@ class Service {
 }
 
 
-    public function addRow($name, $count, $imageName) {
+public function addRow($name, $count, $imageName) {
+    $checkQuery = "SELECT COUNT(*) FROM service WHERE ID = :count";
+    $checkStatement = $this->dbConnection->prepare($checkQuery);
+    $checkStatement->bindValue(":count", $count);
+    $checkStatement->execute();
+    $rowCount = $checkStatement->fetchColumn();
+
+    if ($rowCount > 0) {
+        echo "<script> alert('Service with this ID already exists. Please try again.'); window.location.href = '?resource=service&action=add'; </script>";
+        exit;
+    } else {
         $query = "INSERT INTO service (service_name, ID, service_image) VALUES (:name, :count, :image)";
-    
+
         $statement = $this->dbConnection->prepare($query);
-    
+
         $statement->bindValue(":name", $name);
         $statement->bindValue(":count", $count);
         $statement->bindValue(":image", $imageName);
-    
+
         $statement->execute();
-    
+
         header("Location: http://localhost/System-Development/Project/index.php?resource=service&action=manage");
         exit;
     }
+}
+
+
     
 
     public function removeRow($id) {
@@ -79,7 +92,19 @@ class Service {
         
     }
 
+    public function search($searchTerm) {
+        $query = "SELECT * FROM service WHERE service_name LIKE :searchTerm";
     
+        $statement = $this->dbConnection->prepare($query);
+        $statement->bindValue(":searchTerm", '%' . $searchTerm . '%');
+        $statement->execute();
+    
+        return $statement->fetchAll();
+    }
+    
+    
+    
+
     
 
     

@@ -122,7 +122,7 @@
 
         <input type="hidden" name="row" value=' . $_GET['row'] . '>
         <input type="submit" value="Submit" name="submit">
-        <input type="submit" value="Cancel" onclick="location.href=\'?resource=service&action=manage\'">';
+        <input type="submit" value="Cancel" onclick="location.href=\'?resource=service&action=manage\'; return false;">';
 
     $html .= '</form>';
 
