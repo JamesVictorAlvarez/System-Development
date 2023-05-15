@@ -127,7 +127,11 @@ if (isset($_POST['submit'])) {
         }
     }
 
-    $service->addRow($_POST['service_name'], $_POST['count'], $imageName);
+    try {
+        $service->addRow($_POST['service_name'], $_POST['count'], $imageName);
+    } catch (Exception $e) {
+        echo "<script> alert('" . $e->getMessage() . "'); </script>";
+    }
 
     // Redirect back to the service page after adding the new service
     header('Location: ?resource=service');
@@ -138,11 +142,10 @@ if (isset($_POST['submit'])) {
 <form method="POST" enctype="multipart/form-data">
     <label>Service Name: </label>
     <input type="text" name="service_name" required><br><br>
-    <label>Count: </label>
+    <label>ID: </label>
     <input type="number" name="count" required><br><br>
     <label>Upload Image:</label>
     <input type="file" name="image" id="image" accept=".jpg, .jpeg, .png"><br><br>
     <input type="submit" name="submit" value="Add Service">
-    <input type="button" value="Cancel" onclick="location.href='?resource=service&action=manage'">
+    <input type="submit" value="Cancel" onclick="location.href='?resource=service&action=manage'">
 </form>
-
