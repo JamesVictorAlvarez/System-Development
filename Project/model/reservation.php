@@ -1,6 +1,8 @@
 <?php
 
 namespace model;
+use PDO;
+
 require_once(dirname(__DIR__) . "/core/dbconnectionmanager.php");
 
 class Reservation
@@ -138,25 +140,51 @@ class Reservation
         return $result;
     }
 
-    function getRow($id){
-        $query = "select * from reservation where ID=:id";
+    function getRow($count){
+        $query = "select * from reservation where id=:id";
 
         $statement = $this->dbConnection->prepare($query);
-
-        $statement->execute(['id'=>$this->id]);
+        $statement->bindValue("id", $count, PDO::PARAM_INT);
+        $statement->execute();
 
         return $result = $statement->fetchAll();
     }
 
     function updateRow($id, $request_id, $first_name, $last_name, $date, $time)
     {
-        $query = "update reservation set request_id=:request_id, first_name=:first_name, last_name=:last_name, date=:date, time=:time where id = $id";
+        $query = "UPDATE reservation SET request_id=:request_id, first_name=:first_name, last_name=:last_name, date=:date, time=:time WHERE ID=:id";
+
         $statement = $this->dbConnection->prepare($query);
-        $statement->execute(['request_id' => $this->request_id, 'first_name' => $this->first_name, 'last_name' => $this->last_name, 'date' => $this->date, 'time' => $this->time]);
+        $statement->bindValue(":id", $id);
+        $statement->bindValue(":request_id", $request_id);
+        $statement->bindValue(":first_name", $first_name);
+        $statement->bindValue(":last_name", $last_name);
+        $statement->bindValue(":date", $date);
+        $statement->bindValue(":time", $time);
+
+        $statement->execute();
     }
 
+
+    public function addRow($request_id, $first_name, $last_name, $date, $time) {
+        $query = "INSERT INTO service (request_id, first_name, last_name, date, time) VALUES (:request_id, :first_name, :last_name, :date, :time)";
+
+        $statement = $this->dbConnection->prepare($query);
+        $statement->bindValue(":request_id", $request_id);
+        $statement->bindValue(":first_name", $first_name);
+        $statement->bindValue(":last_name", $last_name);
+        $statement->bindValue(":date", $date);
+        $statement->bindValue(":time", $time);
+
+        $statement->execute();
+
+        header("Location: http://localhost/System-Development/Project/index.php?resource=reservation&action=manage");
+        exit;
+    }
+
+
     public function removeRow($id) {
-        $query = "DELETE FROM reservation WHERE id=:id";
+        $query = "DELETE FROM reservation WHERE ID=:id";
 
         $statement = $this->dbConnection->prepare($query);
 
@@ -165,9 +193,34 @@ class Reservation
         $result = $statement->execute();
 
 
-        header("Location: ?resource=reservation&action=manage");
+        header("Location: http://localhost/System-Development/Project/index.php?resource=reservation&action=manage");
         exit;
 
+    }
+
+    public function getRequestedServices($id) {
+        $query = "select * from reservation AS res INNER JOIN request r on res.request_id = r.id WHERE r.service_id = :service_id";
+
+        $statement = $this->dbConnection->prepare($query);
+        $statement->bindValue(":service_id", $id);
+        $statement->execute();
+
+        $result = $statement->fetchAll();
+
+        return $result;
+    }
+
+    public function removeReservationsWithService($id)
+    {
+        $query = "delete * from reservation AS res INNER JOIN request r on res.request_id = r.id WHERE r.service_id = :service_id";
+
+        $statement = $this->dbConnection->prepare($query);
+        $statement->bindValue(":service_id", $id);
+        $statement->execute();
+
+        $result = $statement->fetchAll();
+
+        return $result;
     }
 
 }

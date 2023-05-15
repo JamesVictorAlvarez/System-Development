@@ -25,6 +25,21 @@ class Request
         return $statement->execute(['service_id' => $this->product_id]);
     }
 
+    public function removeRow($id) {
+        $query = "DELETE FROM request WHERE id=:id";
+
+        $statement = $this->dbConnection->prepare($query);
+
+        $statement->bindValue(":id", $id, PDO::PARAM_INT);
+
+        $result = $statement->execute();
+
+
+        header("Location: http://localhost/System-Development/Project/index.php?resource=reservation&action=manage");
+        exit;
+
+    }
+
     /**
      * @return mixed
      */

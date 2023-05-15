@@ -70,7 +70,7 @@
     <nav class="main-menu">
         <ul>
             <li>
-                <a href="?resource=reservation&action=create">
+                <a href="?resource=reservation&action=manage">
                     <i class="fa fa-calendar fa-2x"></i>
                     <span class="nav-text">
                         Reservation

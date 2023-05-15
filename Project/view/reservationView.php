@@ -177,32 +177,15 @@
         require_once(dirname(__DIR__) . "/model/service.php");
 
         $service = new Service();
-        $html = '<form id="form" method="post" onsubmit=\'
-            if (document.getElementById("first_name").value.trim().length === 0) {
-                alert("First name cannot be empty!");
-                return false;
-            }
-            if (document.getElementById("last_name").value.trim().length === 0) {
-                alert("Last name cannot be empty!");
-                return false;
-                }
-            if (document.getElementById("date").value.length === 0) {
-                alert("Please select a date!");
-                return false;
-                }
-            if (document.getElementById("time").value.length === 0) {
-                alert("Your appointment must have a time!");
-                return false;
-            }
-            form.submit();\'>
+        $html = '<form id="form" method="post" onsubmit=form.submit();>
 <label for="first_name">First name:</label> 
-<input type="text" id="first_name" name="first_name">
+<input type="text" id="first_name" name="first_name" required>
 <br/>
 <label for="last_name">Last name:</label>
-<input type="text" id="last_name" name="last_name">
+<input type="text" id="last_name" name="last_name" required>
 <br/>
-<input type="date" id="date" name="date">
-        <input type="time" name="time" id="time" step="600" min="10:00" max="19:00">
+<input type="date" id="date" name="date" required>
+        <input type="time" name="time" id="time" step="600" min="10:00" max="19:00" required>
         <br/>';
         $html .= "<h2>Select your wanted services:</h2>";
         foreach ($service->getAll() as $s) {

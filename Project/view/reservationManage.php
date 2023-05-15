@@ -43,7 +43,7 @@ use model\Reservation;
 $reservation = new Reservation();
 
 if (isset($_GET['submit']))
-    $reservation->updateRow($_GET["service_name"], $_GET["count"]);
+    $reservation->updateRow($_GET["id"], $_GET["service_id"], $_GET["first_name"], $_GET["last_name"], $_GET["date"], $_GET["time"]);
 
 $reservations = $reservation->getAll();
 
@@ -58,19 +58,19 @@ $html .= "<th> ID </th>
 
 foreach ($reservations as $e) {
     $html .= '<tr>';
-    $html .= '<td>' . $e['ID'] . '</td>';
+    $html .= '<td>' . $e['id'] . '</td>';
     $html .= '<td>' . $e['request_id'] . '</td>';
     $html .= '<td>' . $e['first_name'] . '</td>';
     $html .= '<td>' . $e['last_name'] . '</td>';
     $html .= '<td>' . $e['date'] . '</td>';
     $html .= '<td>' . $e['time'] . '</td>';
-    $html .= '<td><a href="?resource=reservation&action=edit&row=' . $e['ID'] . '"> Edit</a></td>';
-    $html .= '<td><a href="?resource=reservation&action=remove&row=' . $e['ID'] . '"> Remove</a></td>';
+    $html .= '<td><a href="?resource=reservation&action=edit&row=' . $e['id'] . '"> Edit</a></td>';
+    $html .= '<td><a href="?resource=reservation&action=remove&row=' . $e['id'] . '"> Remove</a></td>';
     $html .= '</tr>';
 }
 
 // Add the button row at the bottom
-$html .= '<tr><td colspan="4" class="add_div"><button onclick="location.href=\'?resource=service&action=add\'">Add</button></td></tr>';
+$html .= '<tr><td colspan="4" class="add_div"><button onclick="location.href=\'?resource=reservation&action=add\'">Add</button></td></tr>';
 
 $html .= "</table>";
 
@@ -83,11 +83,11 @@ echo $html;
 <nav class="main-menu">
     <ul>
         <li>
-            <a href="?resource=reservation&action=create">
+            <a href="?resource=reservation&action=manage">
                 <i class="fa fa-calendar fa-2x"></i>
                 <span class="nav-text">
-                    Reservation
-                </span>
+                        Reservation
+                    </span>
             </a>
 
         </li>
@@ -95,8 +95,8 @@ echo $html;
             <a href="?resource=product&action=manage">
                 <i class="fa fa-shopping-cart fa-2x"></i>
                 <span class="nav-text">
-                    Shop
-                </span>
+                        Shop
+                    </span>
             </a>
 
         </li>
@@ -104,18 +104,22 @@ echo $html;
             <a href="?resource=service&action=manage">
                 <i class="fa fa-bookmark fa-2x"></i>
                 <span class="nav-text">
-                    Service
-                </span>
+                        Service
+                    </span>
             </a>
         </li>
     </ul>
+    <?php
+
+
+    ?>
     <ul class="logout">
         <li>
             <a href="?resource=home&action=view&status=logout">
                 <i class="fa fa-power-off fa-2x"></i>
                 <span class="nav-text">
-                    Logout
-                </span>
+                        Logout
+                    </span>
             </a>
         </li>
     </ul>

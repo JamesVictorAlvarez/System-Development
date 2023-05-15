@@ -1,6 +1,8 @@
-
 <html>
-    <head>
+<title> Edit Service </title>
+<h2> Edit Service </h2>
+
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -95,35 +97,59 @@
             transform: translateY(-4px);
         }
     </style>
-    </head>
+</head>
 <?php
 
-$rowNumber = $_GET['row'];
+use model\Reservation;
 
-if (isset($_POST['submit'])) {
-    $reservation = new \model\Reservation();
-    $reservation->removeReservationsWithService($_POST['id']);
-    $service = new Service();
-    $service->removeRow($_POST['id']);
+$reservation = new Reservation();
+$row = $reservation->getRow($_GET['row']);
 
-    // Redirect back to the service page after removing the service
-    header('Location: ?resource=service&action=manage');
+//$service = new Service();
+//
+//foreach ($row as $e) {
+//    $service_name = $e['service_name'];
+//}
+
+$first_name = $row[0]['first_name'];
+$last_name = $row[0]['last_name'];
+$date = $row[0]['date'];
+$time = $row[0]['time'];
+$request_id = $row[0]['request_id'];
+
+$html = '<form method="post" enctype="multipart/form-data">';
+$html .= '<h2>UPDATE</h2>
+        <input type="hidden" name="resource" value="service">
+        <input type="hidden" name="action" value="manage">
+
+        <label for="first_name">First Name:</label>
+        <input type="text" name="first_name" value="' . $first_name . '" required>
+        <label for="last_name">Last Name:</label>
+        <input type="text" name="last_name" value= "' . $last_name . '" required>
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" value="' . $date . '"required>
+        <label for="time">Last Name:</label>
+        <input type="time" name="time" id="time" value="' . $time .'"step="600" min="10:00" max="19:00" required>
+        <br/>
+        <br/>
+        <input type="hidden" name="request_id" value=' . $request_id . ' required>
+
+        <input type="hidden" name="row" value=' . $_GET['row'] . '>
+        <input type="submit" value="Submit" name="submit">
+        <input type="submit" value="Cancel" onclick="location.href=\'?resource=reservation&action=manage\'">';
+
+$html .= '</form>';
+
+echo $html;
+
+if(isset($_POST['submit'])) {
+    $reservation->updateRow($_POST['row'], $_POST['request_id'], $_POST['first_name'], $_POST['last_name'], $_POST['date'], $_POST['time']);
+
+    header("Location: ?resource=service&action=manage");
     exit;
 }
-
-if (isset($_POST['cancel'])) {
-    header('Location: ?resource=service&action=manage');
-    exit;
-}
-
-
 ?>
-<form method="POST">
-    <label>ID: </label>
-    <input type="number" name="id" required value="<?php echo $rowNumber; ?>"><br><br>
-    <input type="submit" name="submit" value="Remove Service">
-    <input type="submit" name="cancel" value="Cancel">
-</form>
+
+
 
 </html>
-

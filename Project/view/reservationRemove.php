@@ -1,6 +1,6 @@
 
 <html>
-    <head>
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -95,24 +95,26 @@
             transform: translateY(-4px);
         }
     </style>
-    </head>
+</head>
 <?php
 
 $rowNumber = $_GET['row'];
 
 if (isset($_POST['submit'])) {
     $reservation = new \model\Reservation();
-    $reservation->removeReservationsWithService($_POST['id']);
-    $service = new Service();
-    $service->removeRow($_POST['id']);
+    $data = $reservation->getRow($_POST['id']);
+    $reservation->removeRow($_POST['id']);
+    $request = new \model\Request();
+    $request->removeRow($data[0]['request_id']);
+
 
     // Redirect back to the service page after removing the service
-    header('Location: ?resource=service&action=manage');
+    header('Location: ?resource=reservation&action=manage');
     exit;
 }
 
 if (isset($_POST['cancel'])) {
-    header('Location: ?resource=service&action=manage');
+    header('Location: ?resource=reservation&action=manage');
     exit;
 }
 

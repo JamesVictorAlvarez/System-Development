@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 15, 2023 at 06:19 AM
+-- Generation Time: May 15, 2023 at 07:47 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -41,7 +41,7 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `name`, `price`, `category`, `available`, `image`) VALUES
-(5, 'Conditioner', '9.99', 'Hair Products', 40, '6460039fd30f4.jpeg'),
+(5, 'Conditioner', '9.99', 'Hair Products', 40, '645820f592bdb.jpeg'),
 (8, 'Shampoo', '12.99', 'Hair Products', 61, '645820f0ec9f7.jpeg'),
 (27, 'Hair Gel', '7.59', 'Hair Products', 38, '64581f1726995.jpeg'),
 (28, 'Nail Polish', '6.99', 'Nail Products', 13, '6458207ac3db0.jpeg'),
@@ -63,7 +63,14 @@ CREATE TABLE `request` (
 --
 
 INSERT INTO `request` (`id`, `service_id`) VALUES
-(5, 1);
+(5, 1),
+(6, 1),
+(7, 1),
+(8, 1),
+(9, 1),
+(10, 1),
+(11, 6),
+(12, 10);
 
 -- --------------------------------------------------------
 
@@ -73,8 +80,9 @@ INSERT INTO `request` (`id`, `service_id`) VALUES
 
 CREATE TABLE `reservation` (
   `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
   `request_id` int(11) NOT NULL,
+  `first_name` varchar(30) DEFAULT NULL,
+  `last_name` varchar(30) DEFAULT NULL,
   `date` date NOT NULL,
   `time` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -83,8 +91,8 @@ CREATE TABLE `reservation` (
 -- Dumping data for table `reservation`
 --
 
-INSERT INTO `reservation` (`id`, `user_id`, `request_id`, `date`, `time`) VALUES
-(4, 2, 5, '2023-05-23', '11:50:00');
+INSERT INTO `reservation` (`id`, `request_id`, `first_name`, `last_name`, `date`, `time`) VALUES
+(8, 11, 'test', 'test', '2023-05-23', '12:50:00');
 
 -- --------------------------------------------------------
 
@@ -103,10 +111,10 @@ CREATE TABLE `service` (
 --
 
 INSERT INTO `service` (`ID`, `service_name`, `service_image`) VALUES
-(1, 'Haircut for All', '6460521e3ab2a.jpg'),
-(2, 'Perm/Rebonding', '646052484669d.jpg'),
-(3, 'Manicure/Pedicure', '646052577f6e7.jpg'),
-(4, 'Hair Coloring', '64605a34602ff.jpg');
+(1, 'Haircut', '6460521e3ab2a.jpg'),
+(6, 'Pedicure', '646052484669d.jpg'),
+(7, 'Haircut for woman', '646052577f6e7.jpg'),
+(10, 'Idek', '64605a34602ff.jpg');
 
 -- --------------------------------------------------------
 
@@ -125,9 +133,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `password`) VALUES
-(1, NULL, '$2y$10$YqdukWeztmwiDnzHB4TlYuopG3oihOMoQZB3Icoh9rLUXhty/D85m'),
-(2, 'h', '$2y$10$7Iaolh/su4mApq4nsacOnOTxUjWjZpbCLHwPYZQZ2p0MyIyl0yCd6'),
-(3, NULL, '$2y$10$ncMpZpx/uF8ebv4yuNRZfutiLG7fmwfw0AzAyM8C.zGW5hutWiKWO');
+(1, 'h', '$2y$10$7Iaolh/su4mApq4nsacOnOTxUjWjZpbCLHwPYZQZ2p0MyIyl0yCd6');
 
 --
 -- Indexes for dumped tables
@@ -179,19 +185,19 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `service`
 --
 ALTER TABLE `service`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123124;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `user`

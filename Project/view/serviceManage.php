@@ -131,45 +131,49 @@
 
 <!-- <div class="add_div">
 <button onclick="location.href='?resource=service&action=add'">Add</button> -->
-<nav class="main-menu">
-    <ul>
-        <li>
-            <a href="?resource=reservation&action=create">
-                <i class="fa fa-calendar fa-2x"></i>
-                <span class="nav-text">
-                    Reservation
-                </span>
-            </a>
+    <nav class="main-menu">
+        <ul>
+            <li>
+                <a href="?resource=reservation&action=manage">
+                    <i class="fa fa-calendar fa-2x"></i>
+                    <span class="nav-text">
+                        Reservation
+                    </span>
+                </a>
 
-        </li>
-        <li class="has-subnav">
-            <a href="?resource=product&action=manage">
-                <i class="fa fa-shopping-cart fa-2x"></i>
-                <span class="nav-text">
-                    Shop
-                </span>
-            </a>
+            </li>
+            <li class="has-subnav">
+                <a href="?resource=product&action=manage">
+                    <i class="fa fa-shopping-cart fa-2x"></i>
+                    <span class="nav-text">
+                        Shop
+                    </span>
+                </a>
 
-        </li>
-        <li class="has-subnav">
-            <a href="?resource=service&action=manage">
-                <i class="fa fa-bookmark fa-2x"></i>
-                <span class="nav-text">
-                    Service
-                </span>
-            </a>
-        </li>
-    </ul>
-    <ul class="logout">
-        <li>
-            <a href="?resource=home&action=view&status=logout">
-                <i class="fa fa-power-off fa-2x"></i>
-                <span class="nav-text">
-                    Logout
-                </span>
-            </a>
-        </li>
-    </ul>
-</nav>
+            </li>
+            <li class="has-subnav">
+                <a href="?resource=service&action=manage">
+                    <i class="fa fa-bookmark fa-2x"></i>
+                    <span class="nav-text">
+                        Service
+                    </span>
+                </a>
+            </li>
+        </ul>
+        <?php
+
+
+        ?>
+        <ul class="logout">
+            <li>
+                <a href="?resource=home&action=view&status=logout">
+                    <i class="fa fa-power-off fa-2x"></i>
+                    <span class="nav-text">
+                        Logout
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </nav>
 
 </div>
