@@ -1,4 +1,5 @@
 <title> Add Service </title>
+<h2> Add Service </h2>
 
 <head>
 <meta charset="UTF-8">
@@ -24,8 +25,6 @@
         }
 
         form {
-            position: relative;
-            top: 65px;
             max-width: 500px;
             margin: 0 auto;
             padding: 20px;
@@ -102,36 +101,7 @@
 <?php
 if (isset($_POST['submit'])) {
     $service = new Service();
-    $imageName = '';
-
-    if($_FILES['image']['error'] === 4) {
-        echo "<script> alert('Image does not exist'); </script>";
-    } else {
-        $imageName = $_FILES['image']['name'];
-        $imageSize = $_FILES['image']['size'];
-        $tmpName = $_FILES['image']['tmp_name'];
-
-        $validImageExtension = ['jpg', 'jpeg', 'png'];
-        $imageExtension = explode('.', $imageName);
-        $imageExtension = strtolower(end($imageExtension));
-        if(!in_array($imageExtension, $validImageExtension)) {
-            echo "<script> alert('Invalid image extension'); </script>";
-        } else if($imageSize > 1000000) {
-            echo "<script> alert('Image size is too large'); </script>";
-        } else {
-            $newImageName = uniqid();
-            $newImageName .= '.' . $imageExtension;
-
-            move_uploaded_file($tmpName, './img/serviceImages/' . $newImageName);
-            $imageName = $newImageName;
-        }
-    }
-
-    try {
-        $service->addRow($_POST['service_name'], $_POST['count'], $imageName);
-    } catch (Exception $e) {
-        echo "<script> alert('" . $e->getMessage() . "'); </script>";
-    }
+    $service->addRow($_POST['service_name'], $_POST['count']);
 
     // Redirect back to the service page after adding the new service
     header('Location: ?resource=service');
@@ -139,13 +109,11 @@ if (isset($_POST['submit'])) {
 }
 ?>
 
-<form method="POST" enctype="multipart/form-data">
+<form method="POST">
     <label>Service Name: </label>
     <input type="text" name="service_name" required><br><br>
-    <label>ID: </label>
+    <label>Count: </label>
     <input type="number" name="count" required><br><br>
-    <label>Upload Image:</label>
-    <input type="file" name="image" id="image" accept=".jpg, .jpeg, .png"><br><br>
     <input type="submit" name="submit" value="Add Service">
     <input type="submit" value="Cancel" onclick="location.href='?resource=service&action=manage'">
 </form>

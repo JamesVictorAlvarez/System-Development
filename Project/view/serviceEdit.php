@@ -106,7 +106,7 @@
         $service_name = $e['service_name'];
     }
 
-    $html = '<form method="get">';
+    $html = '<form method="post" enctype="multipart/form-data">';
 
     $html .= '<h2>UPDATE</h2>
         <input type="hidden" name="resource" value="service">
@@ -115,17 +115,51 @@
         <label for="name">Service Name:</label>
         <input type="text" name="service_name" value= "' . $service_name . '" required>
 
+        <label for="image">Change Image:</label>
+        <input type="file" name="image">
+
         <input type="hidden" name="count" value=' . $_GET['row'] . ' required>
 
         <input type="hidden" name="row" value=' . $_GET['row'] . '>
         <input type="submit" value="Submit" name="submit">
-        <input type="submit" value="Cancel" onclick="location.href="?resource=service&action=manage">
-        ';
+        <input type="submit" value="Cancel" onclick="location.href=\'?resource=service&action=manage\'; return false;">';
 
-        
+    $html .= '</form>';
 
-    $html .= "</form>";
     echo $html;
+
+    if(isset($_POST['submit'])) {
+        $newImageName = null;
+
+        if($_FILES['image']['error'] === 4) {
+            // Image file was not uploaded
+        } else {
+            // Image file was uploaded
+            $imageName = $_FILES['image']['name'];
+            $imageSize = $_FILES['image']['size'];
+            $tmpName = $_FILES['image']['tmp_name'];
+
+            $validImageExtension = ['jpg', 'jpeg', 'png'];
+            $imageExtension = explode('.', $imageName);
+            $imageExtension = strtolower(end($imageExtension));
+            if(!in_array($imageExtension, $validImageExtension)) {
+                // Invalid image extension
+            } else if($imageSize > 1000000) {
+                // Image size is too large
+            } else {
+                // Valid image file was uploaded
+                $newImageName = uniqid() . '.' . $imageExtension;
+                move_uploaded_file($tmpName, './img/serviceImages/' . $newImageName);
+            }
+        }
+
+        $service->updateRow($_POST['service_name'],$_GET['row'], $newImageName);
+
+        header("Location: ?resource=service&action=manage");
+        exit;
+    }
 ?>
+
+
 
 </html>

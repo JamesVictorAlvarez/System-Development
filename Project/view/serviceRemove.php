@@ -101,11 +101,13 @@
 $rowNumber = $_GET['row'];
 
 if (isset($_POST['submit'])) {
+    $reservation = new \model\Reservation();
+    $reservation->removeReservationsWithService($_POST['id']);
     $service = new Service();
     $service->removeRow($_POST['id']);
 
     // Redirect back to the service page after removing the service
-    header('Location: ?resource=service');
+    header('Location: ?resource=service&action=manage');
     exit;
 }
 

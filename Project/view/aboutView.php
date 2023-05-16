@@ -1,22 +1,3 @@
-<?php
-  if (isset($_GET['status'])) {
-    $user = new \model\User();
-
-        if(isset($_COOKIE)){
-            if(isset($_COOKIE['user'])){
-
-                $username = $_COOKIE['user'];
-
-                $user = $user->getUserByUsername($username)[0];
-
-            }
-        }
-
-    $user->logout();
-  }
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -401,117 +382,6 @@
                 font-size: 15px;
             }
         }
-
-        .image-container {
-  position: relative;
-  width: 100%;
-  height: 500px;
-}
-
-.cherry-salon {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.rectangle {
-  width: 300px;
-  height: 200px;
-  background-color: white;
-  border: 2px solid black;
-  text-align: center;
-  padding: 20px;
-}
-
-.cherry-salon-text {
-  font-size: 36px;
-  color: black;
-}
-
-.we-offer-services-text {
-  font-size: 16px;
-  color: black;
-}
-
-.book-now-button {
-  background-color: black;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 18px;
-  margin-top: 20px;
-  cursor: pointer;
-  border-radius: 10px 10px 10px 10px;
-
-}
-
-.image-container {
-  display: flex;
-  justify-content: center;
-}
-
-.service-container {
-  width: 25%;
-  padding: 10px;
-}
-
-.service-image {
-  position: relative;
-}
-
-.service-name {
-  position: absolute;
-  bottom: 0;
-  left: 15%; /* Aligns with the left edge of the image */
-  width: 70%; /* Same width as the image */
-  background-color: black;
-  color: white;
-  text-align: center;
-  font-size: 20px;
-  padding: 15px 0;
-  border-radius: 0 0 10px 10px;
-}
-
-.service-image img {
-  display: block;
-  margin: 0 auto;
-  width: 70%; /* Change to 100% to have the same width as the black section */
-  height: 400px;
-  object-fit: cover;
-  border-radius: 10px;
-}
-
-.services-title {
-  font-size: 50px;
-  text-align: center;
-  margin-top: 50px;
-  color: black;
-
-}
-
-.view-all-services-button {
-  display: flex;
-  justify-content: center;
-  margin-top: 60px;
-}
-
-.black-button {
-  background-color: black;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.white-text {
-  color: white;
-}
-
-
-
     </style>
     <title>Home</title>
 </head>
@@ -540,46 +410,29 @@
     <!------------------------------------------------------||HomePageImage||------------------------------------------------------------>
 
     <div class="image-container">
-  <div class="cherry-salon">
-    <div class="rectangle">
-      <h1 class="cherry-salon-text">Cherry Salon</h1>
-      <p class="we-offer-services-text">Welcome to our salon, where we believe that everyone deserves to look and feel their best.</p>
-      <button class="book-now-button" onclick="window.location.href='?resource=?&action=?'">Book Now</button>
+        <img src="img/about.png">
     </div>
-  </div>
-  <img src="img/homePageSalon.jpg">
-</div>
 
     <hr class="solid">
-    <!------------------------------------------------------||HomePageService||------------------------------------------------------------>
-    
-    <h2 class="services-title">Our Services</h2>
 
-<div class="image-container">
-  <?php
-    require_once(dirname(__DIR__) . "/model/Service.php");
-
-    $service = new Service();
-    $services = $service->getAll(); // Get all services from the database
-    
-    foreach ($services as $s) {
-      $html = 
-      "<div class='service-container'>
-          <div class='service-image'>
-              <img src='img/serviceImages/" . $s['service_image'] . "'>
-              <div class='service-name'>" . $s['service_name'] . "</div>
-          </div>
-      </div>";
-      echo $html;
-    }
-  ?>
-</div>
-
-<div class="arrow-container">
-  <div class="arrow"></div>
-</div>
-
-
+    <div class="responsive-container-block bigContainer">
+        <div class="responsive-container-block Container bottomContainer">
+            <div class="ultimateImg">
+                <img class="mainImg" src="img/salon.png">
+            </div>
+            <div class="allText bottomText">
+                <p class="text-blk headingText">
+                    About Us
+                </p>
+                <p class="text-blk subHeadingText">
+                    Cherry's Salon
+                </p>
+                <p class="text-blk description">
+                Welcome to our salon, where beauty meets artistry and dreams become reality. We are dedicated to bringing out the best in you, enhancing your natural features and igniting your confidence. With our team of skilled professionals, we strive to create an experience that goes beyond just a haircut or a makeover. 
+                </p>
+            </div>
+        </div>
+    </div>
 
     <!------------------------------------------------------||HomePage||------------------------------------------------------------>
 
@@ -587,6 +440,7 @@
 
     <!------------------------------------------------------||Footer||------------------------------------------------------------>
 
+    <footer>
         <div class="footer">
             <div class="contain">
                 <div class="col">
@@ -629,6 +483,7 @@
                 <div class="clearfix"></div>
             </div>
         </div>
+    </footer>
 
 
 </body>

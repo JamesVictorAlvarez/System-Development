@@ -2,10 +2,10 @@
 
 namespace controller;
 
-require_once(dirname(__DIR__)."/model/home.php");
+require_once(dirname(__DIR__)."/model/location.php");
 
 
-class HomeController{
+class LocationController{
 
     function __construct(){
 
@@ -13,9 +13,9 @@ class HomeController{
             if(isset($_GET['action'])){
                 $action = $_GET['action'];
 
-                $viewFile = "home".$action;
+                $viewFile = "location".$action;
 
-                $viewClass = "\\view\\"."home".$action;
+                $viewClass = "\\view\\"."location".$action;
 
                 if(class_exists($viewClass)){
 

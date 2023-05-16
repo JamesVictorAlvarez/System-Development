@@ -1,7 +1,9 @@
-<title> Add Service </title>
+<html>
+<title> Edit Service </title>
+<h2> Edit Service </h2>
 
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Assignment 1</title>
@@ -24,8 +26,6 @@
         }
 
         form {
-            position: relative;
-            top: 65px;
             max-width: 500px;
             margin: 0 auto;
             padding: 20px;
@@ -98,54 +98,58 @@
         }
     </style>
 </head>
-
 <?php
-if (isset($_POST['submit'])) {
-    $service = new Service();
-    $imageName = '';
 
-    if($_FILES['image']['error'] === 4) {
-        echo "<script> alert('Image does not exist'); </script>";
-    } else {
-        $imageName = $_FILES['image']['name'];
-        $imageSize = $_FILES['image']['size'];
-        $tmpName = $_FILES['image']['tmp_name'];
+use model\Reservation;
 
-        $validImageExtension = ['jpg', 'jpeg', 'png'];
-        $imageExtension = explode('.', $imageName);
-        $imageExtension = strtolower(end($imageExtension));
-        if(!in_array($imageExtension, $validImageExtension)) {
-            echo "<script> alert('Invalid image extension'); </script>";
-        } else if($imageSize > 1000000) {
-            echo "<script> alert('Image size is too large'); </script>";
-        } else {
-            $newImageName = uniqid();
-            $newImageName .= '.' . $imageExtension;
+$reservation = new Reservation();
+$row = $reservation->getRow($_GET['row']);
 
-            move_uploaded_file($tmpName, './img/serviceImages/' . $newImageName);
-            $imageName = $newImageName;
-        }
-    }
+//$service = new Service();
+//
+//foreach ($row as $e) {
+//    $service_name = $e['service_name'];
+//}
 
-    try {
-        $service->addRow($_POST['service_name'], $_POST['count'], $imageName);
-    } catch (Exception $e) {
-        echo "<script> alert('" . $e->getMessage() . "'); </script>";
-    }
+$first_name = $row[0]['first_name'];
+$last_name = $row[0]['last_name'];
+$date = $row[0]['date'];
+$time = $row[0]['time'];
+$request_id = $row[0]['request_id'];
 
-    // Redirect back to the service page after adding the new service
-    header('Location: ?resource=service');
+$html = '<form method="post" enctype="multipart/form-data">';
+$html .= '<h2>UPDATE</h2>
+        <input type="hidden" name="resource" value="service">
+        <input type="hidden" name="action" value="manage">
+
+        <label for="first_name">First Name:</label>
+        <input type="text" name="first_name" value="' . $first_name . '" required>
+        <label for="last_name">Last Name:</label>
+        <input type="text" name="last_name" value= "' . $last_name . '" required>
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" value="' . $date . '"required>
+        <label for="time">Last Name:</label>
+        <input type="time" name="time" id="time" value="' . $time .'"step="600" min="10:00" max="19:00" required>
+        <br/>
+        <br/>
+        <input type="hidden" name="request_id" value=' . $request_id . ' required>
+
+        <input type="hidden" name="row" value=' . $_GET['row'] . '>
+        <input type="submit" value="Submit" name="submit">
+        <input type="submit" value="Cancel" onclick="location.href=\'?resource=reservation&action=manage\'">';
+
+$html .= '</form>';
+
+echo $html;
+
+if(isset($_POST['submit'])) {
+    $reservation->updateRow($_POST['row'], $_POST['request_id'], $_POST['first_name'], $_POST['last_name'], $_POST['date'], $_POST['time']);
+
+    header("Location: ?resource=service&action=manage");
     exit;
 }
 ?>
 
-<form method="POST" enctype="multipart/form-data">
-    <label>Service Name: </label>
-    <input type="text" name="service_name" required><br><br>
-    <label>ID: </label>
-    <input type="number" name="count" required><br><br>
-    <label>Upload Image:</label>
-    <input type="file" name="image" id="image" accept=".jpg, .jpeg, .png"><br><br>
-    <input type="submit" name="submit" value="Add Service">
-    <input type="submit" value="Cancel" onclick="location.href='?resource=service&action=manage'">
-</form>
+
+
+</html>

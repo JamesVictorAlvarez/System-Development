@@ -2,7 +2,7 @@
 
 require_once(dirname(__DIR__) . "/core/dbconnectionmanager.php");
 
-class Home {
+class Location {
 
 
 }

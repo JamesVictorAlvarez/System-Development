@@ -2,7 +2,8 @@
 
 namespace controller;
 
-require(dirname(__DIR__)."/model/user.php");
+require_once(dirname(__DIR__)."/model/user.php");
+
 
 class UserController{
 

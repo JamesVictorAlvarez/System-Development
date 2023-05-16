@@ -43,7 +43,6 @@ class User
 
         $dbPassword = $this->getPasswordByUsername();
 
-
         if(password_verify($this->password, $dbPassword)){
 
             $verified = true;
@@ -122,5 +121,9 @@ class User
         $statement->execute(['id' => $id]);
 
         return $statement->fetchAll();
+    }
+
+    public function getId() {
+        return $this->id;
     }
 }

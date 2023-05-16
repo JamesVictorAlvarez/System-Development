@@ -51,6 +51,17 @@
             background-color: #fff;
         }
 
+        input[type="password"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 3px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            background-color: #fff;
+        }
+
         input[type="submit"] {
             background-color: #121113;
             color: #fff;
@@ -99,7 +110,6 @@
 </head>
 
 <body>
-    <h1>User Login</h1>
     <form action="" method="post">
         <input type="hidden" name="resource" value="user">
         <input type="hidden" name="action" value="manage">
@@ -123,7 +133,7 @@ if (isset($_POST['login'])) {
     $user->setPassword($_POST['password']);
     if ($user->login()) {
         $user->getAuthManager()->login();
-        header("Location: ?resource=service&action=manage");
+        header("Location: ?resource=reservation&action=manage");
     } else {
         print("Login failed, please check your username and password.");
     }
