@@ -123,8 +123,69 @@
             text-decoration: black underline;
         }
 
-        .form {
+        .form-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: inherit;
+            padding: 3px;
             color: black;
+        }
+
+        form {
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 2px 5px #ccc; 
+        }
+
+        input {
+            width: calc(100% - 10px);
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            vertical-align: middle;
+        }
+        input:hover, textarea:hover {
+            outline: none;
+            border: 1px solid #095484;
+        }
+        th, td {
+            width: 15%;
+            padding: 15px 0;
+            border-bottom: 1px solid #ccc;
+            text-align: center;
+            vertical-align: unset;
+            line-height: 18px;
+            font-weight: 400;
+            word-break: break-all;
+        }
+
+        table {
+            width: 100%;
+        }
+        textarea {
+            width: calc(100% - 6px);
+        }
+        button {
+            width: 150px;
+            padding: 10px;
+            border: none;
+            -webkit-border-radius: 5px; 
+            -moz-border-radius: 5px; 
+            border-radius: 5px; 
+            background-color: #095484;
+            font-size: 16px;
+            color: #fff;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0666a3;
+        }
+
+        @media (min-width: 568px) {
+            th, td {
+            word-break: keep-all;
+            }
         }
     </style>
     <script>
@@ -181,23 +242,20 @@
         require_once(dirname(__DIR__) . "/model/service.php");
 
         $service = new Service();
-        $html = '<form id="form" method="post" class = "form" onsubmit=form.submit();>
-<label for="first_name">First name:</label> 
-<input type="text" id="first_name" name="first_name" required>
-<br/>
-<label for="last_name">Last name:</label>
-<input type="text" id="last_name" name="last_name" required>
-<br/>
-<input type="date" id="date" name="date" required>
-        <input type="time" name="time" id="time" step="600" min="10:00" max="19:00" required>
-        <br/>';
+        $html = '<div class="form-container">
+        <form id="form" method="post" class = "form" onsubmit=form.submit();>
+            <label for="first_name">First name:</label> 
+            <input type="text" id="first_name" name="first_name" required>
+            <label for="last_name">Last name:</label>
+            <input type="text" id="last_name" name="last_name" required>
+            <input type="date" id="date" name="date" required>
+        <input type="time" name="time" id="time" step="600" min="10:00" max="19:00" required>';
         $html .= "<h2>Select your wanted services:</h2>";
         foreach ($service->getAll() as $s) {
-            $html .= "<input type=\"checkbox\" name=\"services[]\" value={$s['ID']}>{$s['service_name']}";
-            $html .= "<br/>";
+            $html .= "{$s['service_name']}<input type=\"checkbox\" name=\"services[]\" value={$s['ID']}>";
         }
         $html .= '<input type="submit" name="submit" value="Reserve Appointment">';
-        $html .= '</form>';
+        $html .= '</form></div>';
         echo $html;
         ?>
     </div>
@@ -231,7 +289,7 @@
                 <ul>
                     <li><a href="?resource=home&action=view">Home</a></li>
                     <li><a href="?resource=product&action=view">Shop</a></li>
-                    <li><a>Appointments</a></li>
+                    <li><a href="?resource=reservation&action=view">Appointment</a></li>
                     <li><a href="?resource=location&action=view">Location</a></li>
                     <li><a href="?resource=about&action=view">About</a></li>
                 </ul>

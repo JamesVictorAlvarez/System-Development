@@ -143,7 +143,7 @@
 <body>
     <!------------------------------------------------------||LOGO||------------------------------------------------------------>
     <div class="top-left">
-    <a href="?resource=home&action=view" class="logo">LOGO</a>
+        <a href="?resource=home&action=view" class="logo">LOGO</a>
     </div>
     <div class="top-right">
         <p class="login"><a href="?resource=user&action=login">Login</a></p>

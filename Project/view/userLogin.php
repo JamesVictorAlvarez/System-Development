@@ -113,10 +113,10 @@
     <form action="" method="post">
         <input type="hidden" name="resource" value="user">
         <input type="hidden" name="action" value="manage">
-        <label for="username">username:</label><br>
-        <input type="text" id="username" name="username"><br>
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" required><br>
         <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password"><br><br>
+        <input type="password" id="password" name="password" required><br><br>
         <input type="submit" value="Login" name="login">
     </form>
 </body>
