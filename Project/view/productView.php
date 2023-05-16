@@ -180,7 +180,7 @@
                             "</div>";
                         echo $html;
                     }
-                } if(isset($_GET['category'])) {
+                } else if(isset($_GET['category'])) {
                     $products = $product->getCategoryProduct($_GET['category']);
                     foreach ($products as $e) {
                         $html =
