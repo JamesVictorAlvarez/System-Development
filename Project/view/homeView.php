@@ -519,7 +519,7 @@
 <body>
     <!------------------------------------------------------||LOGO||------------------------------------------------------------>
     <div class="top-left">
-        <p class="logo">LOGO</p>
+        <a href="?resource=home&action=view" class="logo">LOGO</a>
     </div>
     <div class="top-right">
         <p class="login"><a href="?resource=user&action=login">Login</a></p>
@@ -614,7 +614,7 @@
                     <ul>
                         <li><a href="?resource=home&action=view">Home</a></li>
                         <li><a href="?resource=product&action=view">Shop</a></li>
-                        <li><a>Appointments</a></li>
+                        <li><a href="?resource=reservation&action=view">Appointments</a></li>
                         <li><a href="?resource=location&action=view">Location</a></li>
                         <li><a href="?resource=about&action=view">About</a></li>
                     </ul>

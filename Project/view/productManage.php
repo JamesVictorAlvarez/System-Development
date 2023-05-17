@@ -96,10 +96,6 @@
                 </a>
             </li>
         </ul>
-        <?php
-            
-
-        ?>
         <ul class="logout">
             <li>
                 <a href="?resource=home&action=view&status=logout">

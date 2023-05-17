@@ -212,7 +212,7 @@ class Reservation
 
     public function removeReservationsWithService($id)
     {
-        $query = "delete * from reservation AS res INNER JOIN request r on res.request_id = r.id WHERE r.service_id = :service_id";
+        $query = "DELETE r FROM (reservation AS r INNER JOIN request AS req on r.request_id = req.id) WHERE req.service_id = :service_id";
 
         $statement = $this->dbConnection->prepare($query);
         $statement->bindValue(":service_id", $id);
@@ -221,6 +221,8 @@ class Reservation
         $result = $statement->fetchAll();
 
         return $result;
+
+        
     }
 
 }

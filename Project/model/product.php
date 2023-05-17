@@ -39,8 +39,19 @@ class Product {
         return $result;
     }
 
-    function getProduct($category) {
-        $query = "select * from product where category = $category";
+    function getProduct($name) {
+        $query = "select * from product where name = '$name'";
+
+        $statement = $this->dbConnection->prepare($query);
+        $statement->execute();
+
+        $result = $statement->fetchAll();
+
+        return $result;
+    }
+
+    function getCategoryProduct($category) {
+        $query = "select * from product where category = '$category'";
 
         $statement = $this->dbConnection->prepare($query);
         $statement->execute();

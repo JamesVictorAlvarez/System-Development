@@ -389,7 +389,7 @@
 <body>
     <!------------------------------------------------------||LOGO||------------------------------------------------------------>
     <div class="top-left">
-        <p class="logo">LOGO</p>
+        <a href="?resource=home&action=view" class="logo">LOGO</a>
     </div>
     <div class="top-right">
         <p class="login"><a href="?resource=user&action=login">Login</a></p>
@@ -401,7 +401,7 @@
         <ul>
             <li><a href="?resource=home&action=view">Home</a></li>
             <li><a href="?resource=product&action=view">Shop</a></li>
-            <li><a href="#">Appointment</a></li>
+            <li><a href="?resource=reservation&action=view">Appointment</a></li>
             <li><a href="?resource=location&action=view">Location</a></li>
             <li><a href="?resource=about&action=view">About</a></li>
         </ul>
@@ -425,14 +425,11 @@
                     About Us
                 </p>
                 <p class="text-blk subHeadingText">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Cherry's Salon
                 </p>
                 <p class="text-blk description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fermentum pulvinar ullamcorper suspendisse ac eget. Pellentesque tempus leo in ullamcorper quis vestibulum ligula elementum ut.
+                Welcome to our salon, where beauty meets artistry and dreams become reality. We are dedicated to bringing out the best in you, enhancing your natural features and igniting your confidence. With our team of skilled professionals, we strive to create an experience that goes beyond just a haircut or a makeover. 
                 </p>
-                <a class="explore">
-                    View Services
-                </a>
             </div>
         </div>
     </div>
@@ -471,7 +468,7 @@
                     <ul>
                         <li><a href="?resource=home&action=view">Home</a></li>
                         <li><a href="?resource=product&action=view">Shop</a></li>
-                        <li><a>Appointments</a></li>
+                        <li><a href="?resource=reservation&action=view">Appointments</a></li>
                         <li><a href="?resource=location&action=view">Location</a></li>
                         <li><a href="?resource=about&action=view">About</a></li>
                     </ul>
