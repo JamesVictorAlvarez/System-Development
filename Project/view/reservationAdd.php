@@ -105,7 +105,7 @@ if (isset($_POST['submit'])) {
     $service->addRow($_POST['service_name'], $_POST['count']);
 
     // Redirect back to the service page after adding the new service
-    header('Location: reservation/view');
+    header('Location: view');
     exit;
 }
 ?>
@@ -116,5 +116,5 @@ if (isset($_POST['submit'])) {
     <label>Count: </label>
     <input type="number" name="count" required><br><br>
     <input type="submit" name="submit" value="Add Service">
-    <input type="submit" value="Cancel" onclick="location.href='?resource=service&action=manage'">
+    <input type="submit" value="Cancel" onclick="location.href='reservation/manage'">
 </form>

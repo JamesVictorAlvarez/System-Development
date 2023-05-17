@@ -110,12 +110,12 @@ if (isset($_POST['submit'])) {
 
 
     // Redirect back to the service page after removing the service
-    header('Location: reservation/manage');
+    header('Location: manage');
     exit;
 }
 
 if (isset($_POST['cancel'])) {
-    header('Location: reservation/manage');
+    header('Location: manage');
     exit;
 }
 

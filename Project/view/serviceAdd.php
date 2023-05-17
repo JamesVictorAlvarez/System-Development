@@ -135,7 +135,7 @@ if (isset($_POST['submit'])) {
     }
 
     // Redirect back to the service page after adding the new service
-    header('Location: service/manage');
+    header('Location: manage');
     exit;
 }
 ?>

@@ -39,7 +39,7 @@
                     <td>" . $e['available'] . "</td>
                     <td><img class = 'previewImage' src='img/productImages/" . $e['image'] . "'></td>
                     <td>
-                        <form method='post' action='?resource=product&action=edit'>
+                        <form method='post' action='product/edit'>
                             <input type='hidden' name = 'row' value =$counter>
                             <input type='submit' value ='Edit'>
                         </form>
@@ -60,10 +60,10 @@
     //     header("location:?resource=product&action=add");    
     if (isset($_POST['delete'])) {
         $product->deleteRow($_POST["row"]);
-        header("location: product/manage");
+        header("location: manage");
     }
     if (isset($_POST['add']))
-        header("location: product/add");
+        header("location: add");
     echo $html;
 
     ?>

@@ -137,7 +137,7 @@ $html .= '<h2>UPDATE</h2>
 
         <input type="hidden" name="row" value=' . $_GET['row'] . '>
         <input type="submit" value="Submit" name="submit">
-        <input type="submit" value="Cancel" onclick="location.href=\'reservation/manage\'">';
+        <input type="submit" value="Cancel" name="cancel">';
 
 $html .= '</form>';
 
@@ -146,8 +146,12 @@ echo $html;
 if(isset($_POST['submit'])) {
     $reservation->updateRow($_POST['row'], $_POST['request_id'], $_POST['first_name'], $_POST['last_name'], $_POST['date'], $_POST['time']);
 
-    header("Location: reservation/manage");
+    header("Location: manage");
     exit;
+}
+
+if (isset($_POST['cancel'])) {
+    header("Location: manage");
 }
 ?>
 

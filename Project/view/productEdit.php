@@ -103,7 +103,8 @@
 
 <body>
     <?php
-
+    if (isset($_POST['back']))
+        header("location: manage");
     $product = new product();
 
     // Creating the Form
@@ -150,9 +151,6 @@
     echo $category;
 
     $html .= "</form>";
-    
-        if (isset($_POST['back'])) 
-            header("location: product/manage");
         if (isset($_POST['update'])) {
 
             if($_FILES['image']['error'] === 4) {
@@ -166,11 +164,11 @@
                 $imageExtension = explode('.', $imageName);
                 $imageExtension = strtolower(end($imageExtension));
                 if(!in_array($imageExtension, $validImageExtension)) {
-                    header("product/manage");
+                    header("manage");
                     echo "<script> alert('Invalid Image Extension'); </script>";
                 } else if($imageSize > 1000000) {
                     echo "<script> alert('Image Size Is Too Large'); </script>";
-                    header("location: product/manage");
+                    header("location: service/manage");
                 } else {
                     $newImageName = uniqid();
                     $newImageName .= '.' . $imageExtension;
@@ -181,7 +179,7 @@
             }
 
             $product->updateRow($_POST["name"], $_POST["price"], $_POST["category"], $_POST["available"], $newImageName, $_POST["count"]);
-            header("location: product/manage");
+            header("location: service/manage");
         } 
     echo $html;
     ?>

@@ -78,8 +78,8 @@
         $html .= '<td>' . $e['ID'] . '</td>';
         $html .= '<td>' . $e['service_name'] . '</td>';
         $html .= '<td><img class="previewImage" src="img/serviceImages/' . $e['service_image'] . '"></td>';
-        $html .= '<td><a href="?resource=service&action=edit&row=' . $e['ID'] . '">Edit</a></td>';
-        $html .= '<td><a href="?resource=service&action=remove&row=' . $e['ID'] . '">Remove</a></td>';
+        $html .= '<td><a href="service/edit?row=' . $e['ID'] . '">Edit</a></td>';
+        $html .= '<td><a href="service/remove?row=' . $e['ID'] . '">Remove</a></td>';
         $html .= '</tr>';
     }
 

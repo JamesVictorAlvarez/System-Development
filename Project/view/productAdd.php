@@ -131,8 +131,8 @@
         <?php
             $product = new product();
 
-            if (isset($_POST['back'])) 
-                header("location: product/manage");
+            if (isset($_POST['back']))
+                header("location: manage");
 
             if (isset($_POST['add'])) {
                 if($_FILES['image']['error'] === 4) {
@@ -146,11 +146,11 @@
                     $imageExtension = explode('.', $imageName);
                     $imageExtension = strtolower(end($imageExtension));
                     if(!in_array($imageExtension, $validImageExtension)) {
-                        header("location: product/manage");
+                        header("location: service/manage");
                         echo "<script> alert('Invalid Image Extension'); </script>";
                     } else if($imageSize > 1000000) {
                         echo "<script> alert('Image Size Is Too Large'); </script>";
-                        header("location: product/manage");
+                        header("location: manage");
                     } else {
                         $newImageName = uniqid();
                         $newImageName .= '.' . $imageExtension;
@@ -161,7 +161,7 @@
                 } 
 
                 $product->addRow($_POST["name"], $_POST["price"], $_POST["category"], $_POST["available"], $newImageName);
-                header("location: product/manage");
+                header("location: manage");
             } 
             
         ?>
