@@ -84,7 +84,7 @@ echo $html;
 <nav class="main-menu">
     <ul>
         <li>
-            <a href="?resource=reservation&action=manage">
+            <a href="reservation/manage">
                 <i class="fa fa-calendar fa-2x"></i>
                 <span class="nav-text">
                         Reservation
@@ -93,7 +93,7 @@ echo $html;
 
         </li>
         <li class="has-subnav">
-            <a href="?resource=product&action=manage">
+            <a href="product/manage">
                 <i class="fa fa-shopping-cart fa-2x"></i>
                 <span class="nav-text">
                         Shop
@@ -102,7 +102,7 @@ echo $html;
 
         </li>
         <li class="has-subnav">
-            <a href="?resource=service&action=manage">
+            <a href="service/manage">
                 <i class="fa fa-bookmark fa-2x"></i>
                 <span class="nav-text">
                         Service
@@ -110,13 +110,9 @@ echo $html;
             </a>
         </li>
     </ul>
-    <?php
-
-
-    ?>
     <ul class="logout">
         <li>
-            <a href="?resource=home&action=view&status=logout">
+            <a href="home/view&status=logout">
                 <i class="fa fa-power-off fa-2x"></i>
                 <span class="nav-text">
                         Logout
