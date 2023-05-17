@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <base href="/system-development/Project/"
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -133,7 +134,7 @@ if (isset($_POST['login'])) {
     $user->setPassword($_POST['password']);
     if ($user->login()) {
         $user->getAuthManager()->login();
-        header("Location: ?resource=reservation&action=manage");
+        header("Location: reservation/manage");
     } else {
         print("Login failed, please check your username and password.");
     }

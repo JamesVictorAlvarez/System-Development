@@ -1,6 +1,7 @@
 <title> Service Page</title>
 
 <head>
+    <base href="/system-development/Project/"
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -64,13 +65,13 @@ foreach ($reservations as $e) {
     $html .= '<td>' . $e['last_name'] . '</td>';
     $html .= '<td>' . $e['date'] . '</td>';
     $html .= '<td>' . $e['time'] . '</td>';
-    $html .= '<td><a href="?resource=reservation&action=edit&row=' . $e['id'] . '"> Edit</a></td>';
-    $html .= '<td><a href="?resource=reservation&action=remove&row=' . $e['id'] . '"> Remove</a></td>';
+    $html .= '<td><a href="reservation/edit?row=' . $e['id'] . '"> Edit</a></td>';
+    $html .= '<td><a href="reservation/remove?row=' . $e['id'] . '"> Remove</a></td>';
     $html .= '</tr>';
 }
 
 // Add the button row at the bottom
-$html .= '<tr><td colspan="4" class="add_div"><button onclick="location.href=\'?resource=reservation&action=add\'">Add</button></td></tr>';
+$html .= '<tr><td colspan="4" class="add_div"><button onclick="location.href=\'reservation/add\'">Add</button></td></tr>';
 
 $html .= "</table>";
 

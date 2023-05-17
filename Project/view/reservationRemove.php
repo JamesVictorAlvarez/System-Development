@@ -1,6 +1,7 @@
 
 <html>
 <head>
+    <base href="/system-development/Project/"
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -109,12 +110,12 @@ if (isset($_POST['submit'])) {
 
 
     // Redirect back to the service page after removing the service
-    header('Location: ?resource=reservation&action=manage');
+    header('Location: reservation/manage');
     exit;
 }
 
 if (isset($_POST['cancel'])) {
-    header('Location: ?resource=reservation&action=manage');
+    header('Location: reservation/manage');
     exit;
 }
 

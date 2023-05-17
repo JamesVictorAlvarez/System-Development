@@ -21,6 +21,7 @@
 <html lang="en">
 
 <head>
+    <base href="/system-development/Project/"
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -519,21 +520,21 @@
 <body>
     <!------------------------------------------------------||LOGO||------------------------------------------------------------>
     <div class="top-left">
-        <a href="?resource=home&action=view" class="logo">LOGO</a>
+        <a href="home/view" class="logo">LOGO</a>
     </div>
     <div class="top-right">
-        <p class="login"><a href="?resource=user&action=login">Login</a></p>
+        <p class="login"><a href="user/login">Login</a></p>
     </div>
     <!------------------------------------------------------||LOGO||------------------------------------------------------------>
 
     <!------------------------------------------------------||NAVBAR||------------------------------------------------------------>
     <nav>
         <ul>
-            <li><a href="?resource=home&action=view">Home</a></li>
-            <li><a href="?resource=product&action=view">Shop</a></li>
-            <li><a href="?resource=reservation&action=view">Appointment</a></li>
-            <li><a href="?resource=location&action=view">Location</a></li>
-            <li><a href="?resource=about&action=view">About</a></li>
+            <li><a href="home/view">Home</a></li>
+            <li><a href="product/view">Shop</a></li>
+            <li><a href="reservation/view">Appointment</a></li>
+            <li><a href="location/view">Location</a></li>
+            <li><a href="about/view">About</a></li>
         </ul>
     </nav>
 
@@ -544,7 +545,7 @@
     <div class="rectangle">
       <h1 class="cherry-salon-text">Cherry Salon</h1>
       <p class="we-offer-services-text">Welcome to our salon, where we believe that everyone deserves to look and feel their best.</p>
-      <button class="book-now-button" onclick="window.location.href='?resource=?&action=?'">Book Now</button>
+      <button class="book-now-button" onclick="window.location.href='reservation/view'">Book Now</button>
     </div>
   </div>
   <img src="img/homePageSalon.jpg">
@@ -612,11 +613,11 @@
                 <div class="col">
                     <h2>Explore</h2>
                     <ul>
-                        <li><a href="?resource=home&action=view">Home</a></li>
-                        <li><a href="?resource=product&action=view">Shop</a></li>
-                        <li><a href="?resource=reservation&action=view">Appointments</a></li>
-                        <li><a href="?resource=location&action=view">Location</a></li>
-                        <li><a href="?resource=about&action=view">About</a></li>
+                        <li><a href="home/view">Home</a></li>
+                        <li><a href="product/view">Shop</a></li>
+                        <li><a href="reservation/view">Appointments</a></li>
+                        <li><a href="location/view">Location</a></li>
+                        <li><a href="about/view">About</a></li>
                     </ul>
                 </div>
                 <div class="col"></div>

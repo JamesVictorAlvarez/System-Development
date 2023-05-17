@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <base href="/system-development/Project/"
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -141,27 +142,25 @@
 </head>
 
 <body>
-    <!------------------------------------------------------||LOGO||------------------------------------------------------------>
-    <div class="top-left">
-        <a href="?resource=home&action=view" class="logo">LOGO</a>
-    </div>
-    <div class="top-right">
-        <p class="login"><a href="?resource=user&action=login">Login</a></p>
-    </div>
-    <!------------------------------------------------------||LOGO||------------------------------------------------------------>
+<!------------------------------------------------------||LOGO||------------------------------------------------------------>
+<div class="top-left">
+    <a href="home/view" class="logo">LOGO</a>
+</div>
+<div class="top-right">
+    <p class="login"><a href="user/login">Login</a></p>
+</div>
+<!------------------------------------------------------||LOGO||------------------------------------------------------------>
 
-    <!------------------------------------------------------||NAVBAR||------------------------------------------------------------>
-    <nav>
-        <ul>
-            <li><a href="?resource=home&action=view">Home</a></li>
-            <li><a href="?resource=product&action=view">Shop</a></li>
-            <li><a href="?resource=reservation&action=view">Appointment</a></li>
-            <li><a href="?resource=location&action=view">Location</a></li>
-            <li><a href="?resource=about&action=view">About</a></li>
-        </ul>
-    </nav>
-    <!------------------------------------------------------||NAVBAR||------------------------------------------------------------>
-
+<!------------------------------------------------------||NAVBAR||------------------------------------------------------------>
+<nav>
+    <ul>
+        <li><a href="home/view">Home</a></li>
+        <li><a href="product/view">Shop</a></li>
+        <li><a href="reservation/view">Appointment</a></li>
+        <li><a href="location/view">Location</a></li>
+        <li><a href="about/view">About</a></li>
+    </ul>
+</nav>
     <div class="container">
 
         <!------------------------------------------------------||BODY||------------------------------------------------------------>
@@ -261,11 +260,11 @@
                 <div class="col">
                     <h2>Explore</h2>
                     <ul>
-                        <li><a href="?resource=home&action=view">Home</a></li>
-                        <li><a href="?resource=product&action=view">Shop</a></li>
-                        <li><a href="?resource=reservation&action=view">Appointments</a></li>
-                        <li><a href="?resource=location&action=view">Location</a></li>
-                        <li><a href="?resource=about&action=view">About</a></li>
+                        <li><a href="home/view">Home</a></li>
+                        <li><a href="product/view">Shop</a></li>
+                        <li><a href="reservation/view">Appointments</a></li>
+                        <li><a href="location/view">Location</a></li>
+                        <li><a href="about/view">About</a></li>
                     </ul>
                 </div>
                 <div class="col"></div>

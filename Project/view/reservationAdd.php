@@ -2,6 +2,7 @@
 <h2> Add Service </h2>
 
 <head>
+    <base href="/system-development/Project/"
 <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -104,7 +105,7 @@ if (isset($_POST['submit'])) {
     $service->addRow($_POST['service_name'], $_POST['count']);
 
     // Redirect back to the service page after adding the new service
-    header('Location: ?resource=service');
+    header('Location: reservation/view');
     exit;
 }
 ?>

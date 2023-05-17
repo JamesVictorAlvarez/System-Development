@@ -3,6 +3,7 @@
 <h2> Edit Service </h2>
 
 <head>
+    <base href="/system-development/Project/"
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -136,7 +137,7 @@ $html .= '<h2>UPDATE</h2>
 
         <input type="hidden" name="row" value=' . $_GET['row'] . '>
         <input type="submit" value="Submit" name="submit">
-        <input type="submit" value="Cancel" onclick="location.href=\'?resource=reservation&action=manage\'">';
+        <input type="submit" value="Cancel" onclick="location.href=\'reservation/manage\'">';
 
 $html .= '</form>';
 
@@ -145,7 +146,7 @@ echo $html;
 if(isset($_POST['submit'])) {
     $reservation->updateRow($_POST['row'], $_POST['request_id'], $_POST['first_name'], $_POST['last_name'], $_POST['date'], $_POST['time']);
 
-    header("Location: ?resource=service&action=manage");
+    header("Location: reservation/manage");
     exit;
 }
 ?>

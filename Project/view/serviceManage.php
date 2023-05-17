@@ -1,6 +1,7 @@
 <title> Service Page</title>
 
 <head>
+    <base href="/system-development/Project/"
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -56,7 +57,7 @@
     $searchForm = '<form method="get" id="search-form" style="text-align:center;">
                     <input type="text" name="search" placeholder="Search...">
                     <button type="submit">Search</button>
-                    <button type="button" onclick="window.location.href=\'index.php?resource=service&action=manage\'">Cancel</button>
+                    <button type="button" onclick="window.location.href=\'service/manage\'">Cancel</button>
                 </form>';
 
     $html = '';

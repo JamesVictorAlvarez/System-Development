@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <base href="/system-development/Project/"
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -134,7 +135,7 @@ class UserCreate
 
         if ($this->user->login()) {
             $this->user->getAuthManager()->login();
-            header('Location: ?resource=user&action=login');
+            header('Location: user/login');
         } else {
             // TODO: incorrect message
             echo("oops");

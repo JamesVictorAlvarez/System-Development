@@ -3,6 +3,7 @@
 <h2> Edit Service </h2>
 
 <head>
+    <base href="/system-development/Project/"
 <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -122,7 +123,7 @@
 
         <input type="hidden" name="row" value=' . $_GET['row'] . '>
         <input type="submit" value="Submit" name="submit">
-        <input type="submit" value="Cancel" onclick="location.href=\'?resource=service&action=manage\'; return false;">';
+        <input type="submit" value="Cancel" onclick="location.href=\'service/manage\'; return false;">';
 
     $html .= '</form>';
 
@@ -155,7 +156,7 @@
 
         $service->updateRow($_POST['service_name'],$_GET['row'], $newImageName);
 
-        header("Location: ?resource=service&action=manage");
+        header("Location: service/manage");
         exit;
     }
 ?>

@@ -12,6 +12,7 @@ require_once(dirname(__DIR__) . "/model/service.php");
 <html lang="en">
 
 <head>
+    <base href="/system-development/Project/"
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -127,7 +128,7 @@ require_once(dirname(__DIR__) . "/model/service.php");
         <nav class="main-menu">
             <ul>
                 <li>
-                    <a href="?resource=reservation&action=create">
+                    <a href="reservation/manage">
                         <i class="fa fa-calendar fa-2x"></i>
                         <span class="nav-text">
                             Reservation
@@ -136,7 +137,7 @@ require_once(dirname(__DIR__) . "/model/service.php");
 
                 </li>
                 <li class="has-subnav">
-                    <a href="?resource=product&action=manage">
+                    <a href="product/manage">
                         <i class="fa fa-shopping-cart fa-2x"></i>
                         <span class="nav-text">
                             Shop
@@ -145,7 +146,7 @@ require_once(dirname(__DIR__) . "/model/service.php");
 
                 </li>
                 <li class="has-subnav">
-                    <a href="?resource=service&action=manage">
+                    <a href="service/manage">
                         <i class="fa fa-bookmark fa-2x"></i>
                         <span class="nav-text">
                             Service
@@ -155,7 +156,7 @@ require_once(dirname(__DIR__) . "/model/service.php");
             </ul>
             <ul class="logout">
                 <li>
-                    <a href="?resource=home&action=view&status=logout">
+                    <a href="home/view?status=logout">
                         <i class="fa fa-power-off fa-2x"></i>
                         <span class="nav-text">
                             Logout

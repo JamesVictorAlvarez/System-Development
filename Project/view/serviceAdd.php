@@ -1,6 +1,7 @@
 <title> Add Service </title>
 
 <head>
+    <base href="/system-development/Project/"
 <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -134,7 +135,7 @@ if (isset($_POST['submit'])) {
     }
 
     // Redirect back to the service page after adding the new service
-    header('Location: ?resource=service');
+    header('Location: service/manage');
     exit;
 }
 ?>
@@ -147,5 +148,5 @@ if (isset($_POST['submit'])) {
     <label>Upload Image:</label>
     <input type="file" name="image" id="image" accept=".jpg, .jpeg, .png"><br><br>
     <input type="submit" name="submit" value="Add Service">
-    <input type="submit" value="Cancel" onclick="location.href='?resource=service&action=manage'">
+    <input type="submit" value="Cancel" onclick="location.href='service/manage'">
 </form>

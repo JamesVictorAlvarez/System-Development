@@ -1,5 +1,6 @@
 
 <html>
+<base href="/system-development/Project/"
     <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -107,12 +108,12 @@ if (isset($_POST['submit'])) {
     $service->removeRow($_POST['id']);
 
     // Redirect back to the service page after removing the service
-    header('Location: ?resource=service&action=manage');
+    header('Location: service/manage');
     exit;
 }
 
 if (isset($_POST['cancel'])) {
-    header('Location: ?resource=service&action=manage');
+    header('Location: service/manage');
     exit;
 }
 
