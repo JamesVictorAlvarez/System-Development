@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 09, 2023 at 03:35 AM
+-- Generation Time: May 15, 2023 at 07:47 AM
 -- Server version: 10.4.27-MariaDB
--- PHP Version: 8.1.12
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -50,23 +50,71 @@ INSERT INTO `product` (`id`, `name`, `price`, `category`, `available`, `image`) 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `request`
+--
+
+CREATE TABLE `request` (
+  `id` int(11) NOT NULL,
+  `service_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `request`
+--
+
+INSERT INTO `request` (`id`, `service_id`) VALUES
+(5, 1),
+(6, 1),
+(7, 1),
+(8, 1),
+(9, 1),
+(10, 1),
+(11, 6),
+(12, 10);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reservation`
+--
+
+CREATE TABLE `reservation` (
+  `id` int(11) NOT NULL,
+  `request_id` int(11) NOT NULL,
+  `first_name` varchar(30) DEFAULT NULL,
+  `last_name` varchar(30) DEFAULT NULL,
+  `date` date NOT NULL,
+  `time` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `reservation`
+--
+
+INSERT INTO `reservation` (`id`, `request_id`, `first_name`, `last_name`, `date`, `time`) VALUES
+(8, 11, 'test', 'test', '2023-05-23', '12:50:00');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `service`
 --
 
 CREATE TABLE `service` (
   `ID` int(11) NOT NULL,
-  `service_name` varchar(100) NOT NULL
+  `service_name` varchar(100) NOT NULL,
+  `service_image` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `service`
 --
 
-INSERT INTO `service` (`ID`, `service_name`) VALUES
-(1, 'Haircut'),
-(6, 'Pedicure'),
-(7, 'Haircut for woman'),
-(10, 'Idek');
+INSERT INTO `service` (`ID`, `service_name`, `service_image`) VALUES
+(1, 'Haircut', '6460521e3ab2a.jpg'),
+(6, 'Pedicure', '646052484669d.jpg'),
+(7, 'Haircut for woman', '646052577f6e7.jpg'),
+(10, 'Idek', '64605a34602ff.jpg');
 
 -- --------------------------------------------------------
 
@@ -85,30 +133,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `password`) VALUES
-(1, NULL, '$2y$10$YqdukWeztmwiDnzHB4TlYuopG3oihOMoQZB3Icoh9rLUXhty/D85m'),
-(2, 'h', '$2y$10$7Iaolh/su4mApq4nsacOnOTxUjWjZpbCLHwPYZQZ2p0MyIyl0yCd6'),
-(3, NULL, '$2y$10$ncMpZpx/uF8ebv4yuNRZfutiLG7fmwfw0AzAyM8C.zGW5hutWiKWO');
-
---
--- Table structure for table `request`
---
-
-CREATE TABLE `request` (
-  `id` int(11) NOT NULL,
-  `service_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Table structure for table `reservation`
---
-
-CREATE TABLE `reservation` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `request_id` int(11) NOT NULL,
-  `date` date NOT NULL,
-  `time` time NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+(1, 'h', '$2y$10$7Iaolh/su4mApq4nsacOnOTxUjWjZpbCLHwPYZQZ2p0MyIyl0yCd6');
 
 --
 -- Indexes for dumped tables
@@ -120,18 +145,6 @@ CREATE TABLE `reservation` (
 ALTER TABLE `product`
   ADD PRIMARY KEY (`id`);
 
---
--- Indexes for table `service`
---
-ALTER TABLE `service`
-  ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
-  
 --
 -- Indexes for table `request`
 --
@@ -147,6 +160,18 @@ ALTER TABLE `reservation`
   ADD KEY `fk_request_id` (`request_id`);
 
 --
+-- Indexes for table `service`
+--
+ALTER TABLE `service`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -155,6 +180,18 @@ ALTER TABLE `reservation`
 --
 ALTER TABLE `product`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
+--
+-- AUTO_INCREMENT for table `request`
+--
+ALTER TABLE `request`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `reservation`
+--
+ALTER TABLE `reservation`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `service`
@@ -167,31 +204,22 @@ ALTER TABLE `service`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-  
---
--- AUTO_INCREMENT for table `request`
---
-ALTER TABLE `request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-  
---
--- AUTO_INCREMENT for table `reservation`
---
-ALTER TABLE `reservation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- Constraints for table `reservation`
+-- Constraints for dumped tables
 --
-ALTER TABLE `reservation`
-  ADD CONSTRAINT `fk_request_id` FOREIGN KEY (`request_id`) REFERENCES `request` (`id`);
-COMMIT;
 
 --
 -- Constraints for table `request`
 --
 ALTER TABLE `request`
   ADD CONSTRAINT `fk_service_id` FOREIGN KEY (`service_id`) REFERENCES `service` (`ID`);
+
+--
+-- Constraints for table `reservation`
+--
+ALTER TABLE `reservation`
+  ADD CONSTRAINT `fk_request_id` FOREIGN KEY (`request_id`) REFERENCES `request` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

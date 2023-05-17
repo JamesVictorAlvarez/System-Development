@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <base href="/system-development/Project/"
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -123,6 +124,13 @@
         .category:hover {
             text-decoration: black underline;
         }
+
+        .productCategory {
+            border: none;
+            cursor: pointer;
+            font-size: 15pt;
+            padding: 10px;
+        }
     </style>
     <script>
         function submit() {
@@ -134,27 +142,25 @@
 </head>
 
 <body>
-    <!------------------------------------------------------||LOGO||------------------------------------------------------------>
-    <div class="top-left">
-        <p class="logo">LOGO</p>
-    </div>
-    <div class="top-right">
-        <p class="login"><a href="?resource=user&action=login">Login</a></p>
-    </div>
-    <!------------------------------------------------------||LOGO||------------------------------------------------------------>
+<!------------------------------------------------------||LOGO||------------------------------------------------------------>
+<div class="top-left">
+    <a href="home/view" class="logo">LOGO</a>
+</div>
+<div class="top-right">
+    <p class="login"><a href="user/login">Login</a></p>
+</div>
+<!------------------------------------------------------||LOGO||------------------------------------------------------------>
 
-    <!------------------------------------------------------||NAVBAR||------------------------------------------------------------>
-    <nav>
-        <ul>
-            <li><a href="?resource=home&action=view">Home</a></li>
-            <li><a href="?resource=product&action=view">Shop</a></li>
-            <li><a href="#">Appointment</a></li>
-            <li><a href="?resource=location&action=view">Location</a></li>
-            <li><a href="?resource=about&action=view">About</a></li>
-        </ul>
-    </nav>
-    <!------------------------------------------------------||NAVBAR||------------------------------------------------------------>
-
+<!------------------------------------------------------||NAVBAR||------------------------------------------------------------>
+<nav>
+    <ul>
+        <li><a href="home/view">Home</a></li>
+        <li><a href="product/view">Shop</a></li>
+        <li><a href="reservation/view">Appointment</a></li>
+        <li><a href="location/view">Location</a></li>
+        <li><a href="about/view">About</a></li>
+    </ul>
+</nav>
     <div class="container">
 
         <!------------------------------------------------------||BODY||------------------------------------------------------------>
@@ -164,22 +170,26 @@
                 <?php
                 $product = new product();
 
-                $products = $product->getAll();
-
-                foreach ($products as $e) {
-                    $html =
-                        "<div class=image-container>"
-                        . "<img class = 'product-image' src='img/productImages/" . $e['image'] . "'>" . "</br>" . $e['name'] . "</br>" . "<div class = price>" . $e['price'] . "$" . "</div>" .
-                        "</div>";
-                    echo $html;
-                }
-
-                if (isset($_POST['Hair Products'])) {
-                    $product = new product();
-                    echo ('hello');
-
-                    $products = $product->getProduct('Hair Products');
-
+                if(isset($_GET['search'])) {
+                    $products = $product->getProduct($_GET['search']);
+                    foreach ($products as $e) {
+                        $html =
+                            "<div class=image-container>"
+                            . "<img class = 'product-image' src='img/productImages/" . $e['image'] . "'>" . "</br>" . $e['name'] . "</br>" . "<div class = price>" . $e['price'] . "$" . "</div>" .
+                            "</div>";
+                        echo $html;
+                    }
+                } else if(isset($_GET['category'])) {
+                    $products = $product->getCategoryProduct($_GET['category']);
+                    foreach ($products as $e) {
+                        $html =
+                            "<div class=image-container>"
+                            . "<img class = 'product-image' src='img/productImages/" . $e['image'] . "'>" . "</br>" . $e['name'] . "</br>" . "<div class = price>" . $e['price'] . "$" . "</div>" .
+                            "</div>";
+                        echo $html;
+                    }
+                } else {
+                    $products = $product->getAll();
                     foreach ($products as $e) {
                         $html =
                             "<div class=image-container>"
@@ -188,6 +198,7 @@
                         echo $html;
                     }
                 }
+                
                 ?>
             </div>
         </div>
@@ -195,7 +206,9 @@
 
         <!------------------------------------------------------||SEARCH||------------------------------------------------------------>
         <div class="item2">
-            <form>
+            <form method="GET">
+                <input type="hidden" name="resource" value="product">
+                <input type="hidden" name="action" value="view">
                 <input type="search" id="search-input" name="search">
                 <button type="submit">Search</button>
             </form>
@@ -210,10 +223,11 @@
 
             foreach ($products as $e) {
                 $html =
-                    "<form id='form' method='post'><div class = category onclick=submit()>
-                    " . $e['category'] . "
-                    <input type='hidden' name='" . $e['category'] . "'>
-                    </div></form>";
+                    "<form id='form' method='GET'>
+                    <input type='hidden' name='resource' value='product'>
+                    <input type='hidden' name='action' value='view'>
+                    <input type='submit' name='category' class = 'productCategory' value='" . $e['category'] . "'>
+                    </form>";
                 echo $html;
             }
             ?>
@@ -246,11 +260,11 @@
                 <div class="col">
                     <h2>Explore</h2>
                     <ul>
-                        <li><a href="?resource=home&action=view">Home</a></li>
-                        <li><a href="?resource=product&action=view">Shop</a></li>
-                        <li><a>Appointments</a></li>
-                        <li><a href="?resource=location&action=view">Location</a></li>
-                        <li><a href="?resource=about&action=view">About</a></li>
+                        <li><a href="home/view">Home</a></li>
+                        <li><a href="product/view">Shop</a></li>
+                        <li><a href="reservation/view">Appointments</a></li>
+                        <li><a href="location/view">Location</a></li>
+                        <li><a href="about/view">About</a></li>
                     </ul>
                 </div>
                 <div class="col"></div>

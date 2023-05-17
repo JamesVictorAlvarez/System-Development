@@ -15,13 +15,13 @@
     $user->logout();
   }
 
-
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+    <base href="/system-development/Project/"
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -406,7 +406,7 @@
         .image-container {
   position: relative;
   width: 100%;
-  height: 400px;
+  height: 500px;
 }
 
 .cherry-salon {
@@ -520,21 +520,21 @@
 <body>
     <!------------------------------------------------------||LOGO||------------------------------------------------------------>
     <div class="top-left">
-        <p class="logo">LOGO</p>
+        <a href="home/view" class="logo">LOGO</a>
     </div>
     <div class="top-right">
-        <p class="login"><a href="?resource=user&action=login">Login</a></p>
+        <p class="login"><a href="user/login">Login</a></p>
     </div>
     <!------------------------------------------------------||LOGO||------------------------------------------------------------>
 
     <!------------------------------------------------------||NAVBAR||------------------------------------------------------------>
     <nav>
         <ul>
-            <li><a href="?resource=home&action=view">Home</a></li>
-            <li><a href="?resource=product&action=view">Shop</a></li>
-            <li><a href="#">Appointment</a></li>
-            <li><a href="?resource=location&action=view">Location</a></li>
-            <li><a href="?resource=about&action=view">About</a></li>
+            <li><a href="home/view">Home</a></li>
+            <li><a href="product/view">Shop</a></li>
+            <li><a href="reservation/view">Appointment</a></li>
+            <li><a href="location/view">Location</a></li>
+            <li><a href="about/view">About</a></li>
         </ul>
     </nav>
 
@@ -545,7 +545,7 @@
     <div class="rectangle">
       <h1 class="cherry-salon-text">Cherry Salon</h1>
       <p class="we-offer-services-text">Welcome to our salon, where we believe that everyone deserves to look and feel their best.</p>
-      <button class="book-now-button" onclick="window.location.href='?resource=?&action=?'">Book Now</button>
+      <button class="book-now-button" onclick="window.location.href='reservation/view'">Book Now</button>
     </div>
   </div>
   <img src="img/homePageSalon.jpg">
@@ -556,50 +556,30 @@
     
     <h2 class="services-title">Our Services</h2>
 
-    <div class="image-container">
-  <div class="service-container">
-    <div class="service-image">
-      <img src="img/haircut.jpg">
-      <div class="service-name">
-        Haircut for All
-      </div>
-    </div>
-  </div>
-  
-  <div class="service-container">
-    <div class="service-image">
-      <img src="img/perm.jpg">
-      <div class="service-name">
-        Perm
-      </div>
-    </div>
-  </div>
-  
-  <div class="service-container">
-    <div class="service-image">
-      <img src="img/pedicure.jpg">
-      <div class="service-name">
-        Manicure/Pedicure
-      </div>
-    </div>
-  </div>
-  
-  <div class="service-container">
-    <div class="service-image">
-      <img src="img/haircolor.jpg">
-      <div class="service-name">
-        Hair Coloring
-      </div>
-    </div>
-  </div>
+<div class="image-container">
+  <?php
+    require_once(dirname(__DIR__) . "/model/Service.php");
+
+    $service = new Service();
+    $services = $service->getAll(); // Get all services from the database
+    
+    foreach ($services as $s) {
+      $html = 
+      "<div class='service-container'>
+          <div class='service-image'>
+              <img src='img/serviceImages/" . $s['service_image'] . "'>
+              <div class='service-name'>" . $s['service_name'] . "</div>
+          </div>
+      </div>";
+      echo $html;
+    }
+  ?>
 </div>
 
-<div class="services-container">
-  <!-- services display code goes here -->
-  <div class="view-all-services-button">
-    <button class="black-button white-text">View All Services</button>
-  </div>
+<div class="arrow-container">
+  <div class="arrow"></div>
 </div>
+
 
 
     <!------------------------------------------------------||HomePage||------------------------------------------------------------>
@@ -608,7 +588,6 @@
 
     <!------------------------------------------------------||Footer||------------------------------------------------------------>
 
-    <footer>
         <div class="footer">
             <div class="contain">
                 <div class="col">
@@ -634,11 +613,11 @@
                 <div class="col">
                     <h2>Explore</h2>
                     <ul>
-                        <li><a href="?resource=home&action=view">Home</a></li>
-                        <li><a href="?resource=product&action=view">Shop</a></li>
-                        <li><a>Appointments</a></li>
-                        <li><a href="?resource=location&action=view">Location</a></li>
-                        <li><a href="?resource=about&action=view">About</a></li>
+                        <li><a href="home/view">Home</a></li>
+                        <li><a href="product/view">Shop</a></li>
+                        <li><a href="reservation/view">Appointments</a></li>
+                        <li><a href="location/view">Location</a></li>
+                        <li><a href="about/view">About</a></li>
                     </ul>
                 </div>
                 <div class="col"></div>
@@ -651,7 +630,6 @@
                 <div class="clearfix"></div>
             </div>
         </div>
-    </footer>
 
 
 </body>

@@ -2,7 +2,7 @@
 
 namespace controller;
 
-require(dirname(__DIR__)."/model/about.php");
+require_once(dirname(__DIR__)."/model/about.php");
 
 
 class AboutController{

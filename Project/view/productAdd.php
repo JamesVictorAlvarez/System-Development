@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <base href="/system-development/Project/"
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -131,7 +132,7 @@
             $product = new product();
 
             if (isset($_POST['back'])) 
-                header("location:?resource=product&action=manage");
+                header("location: product/manage");
 
             if (isset($_POST['add'])) {
                 if($_FILES['image']['error'] === 4) {
@@ -145,11 +146,11 @@
                     $imageExtension = explode('.', $imageName);
                     $imageExtension = strtolower(end($imageExtension));
                     if(!in_array($imageExtension, $validImageExtension)) {
-                        header("location:?resource=product&action=manage");
+                        header("location: product/manage");
                         echo "<script> alert('Invalid Image Extension'); </script>";
                     } else if($imageSize > 1000000) {
                         echo "<script> alert('Image Size Is Too Large'); </script>";
-                        header("location:?resource=product&action=manage");
+                        header("location: product/manage");
                     } else {
                         $newImageName = uniqid();
                         $newImageName .= '.' . $imageExtension;
@@ -160,7 +161,7 @@
                 } 
 
                 $product->addRow($_POST["name"], $_POST["price"], $_POST["category"], $_POST["available"], $newImageName);
-                header("location:?resource=product&action=manage");
+                header("location: product/manage");
             } 
             
         ?>

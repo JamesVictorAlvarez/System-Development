@@ -2,7 +2,7 @@
 
 namespace controller;
 
-require(dirname(__DIR__)."/model/product.php");
+require_once(dirname(__DIR__)."/model/product.php");
 
 
 class ProductController{

@@ -1,6 +1,7 @@
 <html>
 
 <head>
+    <base href="/system-development/Project/"
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -59,10 +60,10 @@
     //     header("location:?resource=product&action=add");    
     if (isset($_POST['delete'])) {
         $product->deleteRow($_POST["row"]);
-        header("location:?resource=product&action=manage");
+        header("location: product/manage");
     }
     if (isset($_POST['add']))
-        header("location:?resource=product&action=add");
+        header("location: product/add");
     echo $html;
 
     ?>
@@ -70,7 +71,7 @@
     <nav class="main-menu">
         <ul>
             <li>
-                <a href="?resource=reservation&action=create">
+                <a href="reservation/manage">
                     <i class="fa fa-calendar fa-2x"></i>
                     <span class="nav-text">
                         Reservation
@@ -79,7 +80,7 @@
 
             </li>
             <li class="has-subnav">
-                <a href="?resource=product&action=manage">
+                <a href="product/manage">
                     <i class="fa fa-shopping-cart fa-2x"></i>
                     <span class="nav-text">
                         Shop
@@ -88,7 +89,7 @@
 
             </li>
             <li class="has-subnav">
-                <a href="?resource=service&action=manage">
+                <a href="service/manage">
                     <i class="fa fa-bookmark fa-2x"></i>
                     <span class="nav-text">
                         Service
@@ -96,13 +97,9 @@
                 </a>
             </li>
         </ul>
-        <?php
-            
-
-        ?>
         <ul class="logout">
             <li>
-                <a href="?resource=home&action=view&status=logout">
+                <a href="home/view&status=logout">
                     <i class="fa fa-power-off fa-2x"></i>
                     <span class="nav-text">
                         Logout

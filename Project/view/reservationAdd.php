@@ -1,9 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+<title> Add Service </title>
+<h2> Add Service </h2>
 
 <head>
     <base href="/system-development/Project/"
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Assignment 1</title>
@@ -42,17 +42,6 @@
         }
 
         input[type="text"] {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            border: none;
-            border-radius: 3px;
-            margin-bottom: 20px;
-            box-sizing: border-box;
-            background-color: #fff;
-        }
-
-        input[type="password"] {
             display: block;
             width: 100%;
             padding: 10px;
@@ -110,37 +99,22 @@
     </style>
 </head>
 
-<body>
-<form action="" method="post">
-    <h1>Create User</h1>
-    <br/>
-    <label for="username">Username:</label><br>
-    <input type="text" id="username" name="username"><br>
-    <label for="password">Password:</label><br>
-    <input type="password" id="password" name="password"><br><br>
-    <input type="submit" value="Register">
-</form>
-</body>
-</html>
-
 <?php
+if (isset($_POST['submit'])) {
+    $service = new Service();
+    $service->addRow($_POST['service_name'], $_POST['count']);
 
-class UserCreate
-{
-    private $user;
-
-    public function __construct($user)
-    {
-        $this->user = $user;
-
-        if ($this->user->login()) {
-            $this->user->getAuthManager()->login();
-            header('Location: user/login');
-        } else {
-            // TODO: incorrect message
-            echo("oops");
-        }
-    }
+    // Redirect back to the service page after adding the new service
+    header('Location: reservation/view');
+    exit;
 }
-
 ?>
+
+<form method="POST">
+    <label>Service Name: </label>
+    <input type="text" name="service_name" required><br><br>
+    <label>Count: </label>
+    <input type="number" name="count" required><br><br>
+    <input type="submit" name="submit" value="Add Service">
+    <input type="submit" value="Cancel" onclick="location.href='?resource=service&action=manage'">
+</form>

@@ -1,6 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
 
+<html>
 <head>
     <base href="/system-development/Project/"
     <meta charset="UTF-8">
@@ -42,17 +41,6 @@
         }
 
         input[type="text"] {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            border: none;
-            border-radius: 3px;
-            margin-bottom: 20px;
-            box-sizing: border-box;
-            background-color: #fff;
-        }
-
-        input[type="password"] {
             display: block;
             width: 100%;
             padding: 10px;
@@ -109,38 +97,36 @@
         }
     </style>
 </head>
-
-<body>
-<form action="" method="post">
-    <h1>Create User</h1>
-    <br/>
-    <label for="username">Username:</label><br>
-    <input type="text" id="username" name="username"><br>
-    <label for="password">Password:</label><br>
-    <input type="password" id="password" name="password"><br><br>
-    <input type="submit" value="Register">
-</form>
-</body>
-</html>
-
 <?php
 
-class UserCreate
-{
-    private $user;
+$rowNumber = $_GET['row'];
 
-    public function __construct($user)
-    {
-        $this->user = $user;
+if (isset($_POST['submit'])) {
+    $reservation = new \model\Reservation();
+    $data = $reservation->getRow($_POST['id']);
+    $reservation->removeRow($_POST['id']);
+    $request = new \model\Request();
+    $request->removeRow($data[0]['request_id']);
 
-        if ($this->user->login()) {
-            $this->user->getAuthManager()->login();
-            header('Location: user/login');
-        } else {
-            // TODO: incorrect message
-            echo("oops");
-        }
-    }
+
+    // Redirect back to the service page after removing the service
+    header('Location: reservation/manage');
+    exit;
 }
 
+if (isset($_POST['cancel'])) {
+    header('Location: reservation/manage');
+    exit;
+}
+
+
 ?>
+<form method="POST">
+    <label>ID: </label>
+    <input type="number" name="id" required value="<?php echo $rowNumber; ?>"><br><br>
+    <input type="submit" name="submit" value="Remove Service">
+    <input type="submit" name="cancel" value="Cancel">
+</form>
+
+</html>
+

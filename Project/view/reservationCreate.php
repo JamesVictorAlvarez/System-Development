@@ -6,18 +6,13 @@ use Service;
 
 require_once(dirname(__DIR__) . "/model/service.php");
 
-
-if (isset($_POST['submit'])) {
-    $date = $_POST['date'];
-    echo $date;
-}
-
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+    <base href="/system-development/Project/"
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -119,7 +114,7 @@ if (isset($_POST['submit'])) {
     <form action="" method="POST">
         <input type="date" name="date">
         <input type="time" name="time" step="600" min="10:00" max="19:00">
-        <br />
+        <br/>
         <?php
         $service = new Service();
         foreach ($service->getAll() as $s) {
@@ -133,7 +128,7 @@ if (isset($_POST['submit'])) {
         <nav class="main-menu">
             <ul>
                 <li>
-                    <a href="?resource=reservation&action=create">
+                    <a href="reservation/manage">
                         <i class="fa fa-calendar fa-2x"></i>
                         <span class="nav-text">
                             Reservation
@@ -142,7 +137,7 @@ if (isset($_POST['submit'])) {
 
                 </li>
                 <li class="has-subnav">
-                    <a href="?resource=product&action=manage">
+                    <a href="product/manage">
                         <i class="fa fa-shopping-cart fa-2x"></i>
                         <span class="nav-text">
                             Shop
@@ -151,7 +146,7 @@ if (isset($_POST['submit'])) {
 
                 </li>
                 <li class="has-subnav">
-                    <a href="?resource=service&action=manage">
+                    <a href="service/manage">
                         <i class="fa fa-bookmark fa-2x"></i>
                         <span class="nav-text">
                             Service
@@ -161,7 +156,7 @@ if (isset($_POST['submit'])) {
             </ul>
             <ul class="logout">
                 <li>
-                    <a href="?resource=home&action=view&status=logout">
+                    <a href="home/view?status=logout">
                         <i class="fa fa-power-off fa-2x"></i>
                         <span class="nav-text">
                             Logout

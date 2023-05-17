@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
+<title> Edit Service </title>
+<h2> Edit Service </h2>
 
 <head>
     <base href="/system-development/Project/"
@@ -42,17 +43,6 @@
         }
 
         input[type="text"] {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            border: none;
-            border-radius: 3px;
-            margin-bottom: 20px;
-            box-sizing: border-box;
-            background-color: #fff;
-        }
-
-        input[type="password"] {
             display: block;
             width: 100%;
             padding: 10px;
@@ -109,38 +99,58 @@
         }
     </style>
 </head>
-
-<body>
-<form action="" method="post">
-    <h1>Create User</h1>
-    <br/>
-    <label for="username">Username:</label><br>
-    <input type="text" id="username" name="username"><br>
-    <label for="password">Password:</label><br>
-    <input type="password" id="password" name="password"><br><br>
-    <input type="submit" value="Register">
-</form>
-</body>
-</html>
-
 <?php
 
-class UserCreate
-{
-    private $user;
+use model\Reservation;
 
-    public function __construct($user)
-    {
-        $this->user = $user;
+$reservation = new Reservation();
+$row = $reservation->getRow($_GET['row']);
 
-        if ($this->user->login()) {
-            $this->user->getAuthManager()->login();
-            header('Location: user/login');
-        } else {
-            // TODO: incorrect message
-            echo("oops");
-        }
-    }
+//$service = new Service();
+//
+//foreach ($row as $e) {
+//    $service_name = $e['service_name'];
+//}
+
+$first_name = $row[0]['first_name'];
+$last_name = $row[0]['last_name'];
+$date = $row[0]['date'];
+$time = $row[0]['time'];
+$request_id = $row[0]['request_id'];
+
+$html = '<form method="post" enctype="multipart/form-data">';
+$html .= '<h2>UPDATE</h2>
+        <input type="hidden" name="resource" value="service">
+        <input type="hidden" name="action" value="manage">
+
+        <label for="first_name">First Name:</label>
+        <input type="text" name="first_name" value="' . $first_name . '" required>
+        <label for="last_name">Last Name:</label>
+        <input type="text" name="last_name" value= "' . $last_name . '" required>
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" value="' . $date . '"required>
+        <label for="time">Last Name:</label>
+        <input type="time" name="time" id="time" value="' . $time .'"step="600" min="10:00" max="19:00" required>
+        <br/>
+        <br/>
+        <input type="hidden" name="request_id" value=' . $request_id . ' required>
+
+        <input type="hidden" name="row" value=' . $_GET['row'] . '>
+        <input type="submit" value="Submit" name="submit">
+        <input type="submit" value="Cancel" onclick="location.href=\'reservation/manage\'">';
+
+$html .= '</form>';
+
+echo $html;
+
+if(isset($_POST['submit'])) {
+    $reservation->updateRow($_POST['row'], $_POST['request_id'], $_POST['first_name'], $_POST['last_name'], $_POST['date'], $_POST['time']);
+
+    header("Location: reservation/manage");
+    exit;
 }
-
 ?>
+
+
+
+</html>

@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <base href="/system-development/Project/"
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -110,14 +111,13 @@
 </head>
 
 <body>
-    <h1>User Login</h1>
     <form action="" method="post">
         <input type="hidden" name="resource" value="user">
         <input type="hidden" name="action" value="manage">
-        <label for="username">username:</label><br>
-        <input type="text" id="username" name="username"><br>
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" required><br>
         <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password"><br><br>
+        <input type="password" id="password" name="password" required><br><br>
         <input type="submit" value="Login" name="login">
     </form>
 </body>
@@ -134,7 +134,7 @@ if (isset($_POST['login'])) {
     $user->setPassword($_POST['password']);
     if ($user->login()) {
         $user->getAuthManager()->login();
-        header("Location: ?resource=reservation&action=create");
+        header("Location: reservation/manage");
     } else {
         print("Login failed, please check your username and password.");
     }

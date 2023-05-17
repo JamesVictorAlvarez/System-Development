@@ -2,7 +2,7 @@
 
 namespace controller;
 
-require(dirname(__DIR__)."/model/home.php");
+require_once(dirname(__DIR__)."/model/home.php");
 
 
 class HomeController{
