@@ -134,7 +134,7 @@ if (isset($_POST['login'])) {
     $user->setPassword($_POST['password']);
     if ($user->login()) {
         $user->getAuthManager()->login();
-        header("Location: reservation/manage");
+        header("Location: /system-development/Project/reservation/manage");
     } else {
         print("Login failed, please check your username and password.");
     }

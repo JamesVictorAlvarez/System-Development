@@ -112,7 +112,7 @@ echo $html;
     </ul>
     <ul class="logout">
         <li>
-            <a href="home/view&status=logout">
+            <a href="home/view?status=logout">
                 <i class="fa fa-power-off fa-2x"></i>
                 <span class="nav-text">
                         Logout

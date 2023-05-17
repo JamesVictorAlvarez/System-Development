@@ -13,6 +13,7 @@
         }
 
     $user->logout();
+        header("Location: view");
   }
 
 ?>
