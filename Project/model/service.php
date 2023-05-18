@@ -1,6 +1,7 @@
 <?php
-
+namespace model;
 require_once(dirname(__DIR__) . "/core/dbconnectionmanager.php");
+use database\DBConnectionManager;
 
 class Service {
 
@@ -10,7 +11,7 @@ class Service {
     private $dbConnection;
 
     function __construct() {
-        $conManager = new Database\DBConnectionManager();
+        $conManager = new DBConnectionManager();
         $this->dbConnection = $conManager->getConnection();
     }
 

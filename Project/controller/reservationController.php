@@ -61,7 +61,7 @@ class ReservationController
 
                     }
                 } else {
-                    header('location:?resource=user&action=login');
+                    header('location:user/login');
                 }
             }
 

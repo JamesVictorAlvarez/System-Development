@@ -2,7 +2,7 @@
 
 namespace view;
 
-use Service;
+use model\Service;
 
 require_once(dirname(__DIR__) . "/model/service.php");
 

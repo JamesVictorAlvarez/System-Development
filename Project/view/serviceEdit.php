@@ -100,6 +100,8 @@
     </style>
 </head>
 <?php
+use model\Service;
+
     $service = new Service();
     $row = $service->getRow($_GET['row']);
 

@@ -101,6 +101,8 @@
 </head>
 
 <?php
+use model\Service;
+
 if (isset($_POST['submit'])) {
     $service = new Service();
     $imageName = '';

@@ -559,9 +559,10 @@
 
 <div class="image-container">
   <?php
-    require_once(dirname(__DIR__) . "/model/Service.php");
+  use model\Service;
 
-    $service = new Service();
+
+  $service = new Service();
     $services = $service->getAll(); // Get all services from the database
     
     foreach ($services as $s) {

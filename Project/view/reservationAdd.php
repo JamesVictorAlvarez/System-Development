@@ -3,7 +3,7 @@
 
 <head>
     <base href="/system-development/Project/"
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Assignment 1</title>
@@ -100,21 +100,33 @@
 </head>
 
 <?php
-if (isset($_POST['submit'])) {
-    $service = new Service();
-    $service->addRow($_POST['service_name'], $_POST['count']);
-
-    // Redirect back to the service page after adding the new service
-    header('Location: view');
+use model\Service;
+$service = new Service();
+if (isset($_POST['cancel'])) {
+    header('Location: manage');
     exit;
 }
 ?>
 
-<form method="POST">
-    <label>Service Name: </label>
-    <input type="text" name="service_name" required><br><br>
-    <label>Count: </label>
-    <input type="number" name="count" required><br><br>
-    <input type="submit" name="submit" value="Add Service">
-    <input type="submit" value="Cancel" onclick="location.href='reservation/manage'">
-</form>
+<?php
+$html = '
+<form method="post">
+    <label for="first_name">First name:</label>
+    <input type="text" id="first_name" name="first_name">
+    <label for="last_name">Last name:</label>
+    <input type="text" id="last_name" name="last_name">
+    <input type="date" id="date" name="date">
+    <input type="time" name="time" id="time" step="600" min="10:00" max="19:00">
+    <br/>
+    <br/>
+    <h2>Select your wanted services:</h2>
+    <br/>';
+foreach ($service->getAll() as $s) {
+    $html .= "{$s['service_name']}<input type=\"checkbox\" name=\"services[]\" value={$s['ID']}>";
+    $html .= "<br/>";
+}
+$html .= '<input type="submit" name="submit" value="Add Appointment">';
+$html .= '<input type="submit" value="Cancel" name="cancel">';
+$html .= '</form></div>';
+echo $html;
+?>

@@ -124,7 +124,7 @@ if (isset($_POST['cancel'])) {
 <form method="POST">
     <label>ID: </label>
     <input type="number" name="id" required value="<?php echo $rowNumber; ?>"><br><br>
-    <input type="submit" name="submit" value="Remove Service">
+    <input type="submit" name="submit" value="Remove Reservation">
     <input type="submit" name="cancel" value="Cancel">
 </form>
 

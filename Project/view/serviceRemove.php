@@ -98,6 +98,8 @@
     </style>
     </head>
 <?php
+use model\Service;
+
 
 $rowNumber = $_GET['row'];
 

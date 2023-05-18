@@ -39,6 +39,9 @@
 
 <div style="margin: 0 auto; width: 600;">
     <?php
+
+    use model\Service;
+
     $service = new Service();
 
     if (isset($_GET['submit'])) {
@@ -88,7 +91,7 @@
 
     // Centered "Add" button
     $html .= '<div style="text-align:center;margin-top:80px;">
-                <button onclick="location.href=\'?resource=service&action=add\'">Add</button>
+                <button onclick="location.href=\'service/add\'">Add</button>
             </div>';
 
     // Echo search form

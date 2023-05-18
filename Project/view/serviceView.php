@@ -73,6 +73,8 @@
 </body>
 
 <?php
+use model\Service;
+
     $service = new Service();
 
     if (isset($_GET['submit']))

@@ -1,6 +1,6 @@
 <?php
 require_once(dirname(__DIR__) . "/Project/model/Service.php");
-
+use model\Service;
 $service = new Service();
 
 // Make sure the search term was submitted via GET
